@@ -1,0 +1,54 @@
+<style>
+.pdf-frame iframe {
+position: fixed; /* Фиксированное положение */
+top: 50%; /* Расстояние сверху */
+border: 1px solid #333; /* Параметры рамки */ 
+width:99%;
+height:50%;
+z-index: 9999;
+}
+input {
+margin-top:10px;
+border:1px solid #f199bf;
+color:#666666;
+background-color:#fef3f7;
+}
+
+textarea {
+margin-top:10px;
+border:1px solid #f199bf;
+color:#666666;
+}
+  </style>
+<center><div id="comms"></div>
+<form action="" method="post" id="form">
+Name:* <input id="comavtor" type="text" /><br>
+Text:*
+<textarea maxlength="500" style="WIDTH: 370px; HEIGHT: 50px" id="comtext" cols="" rows=""></textarea><br>Max number of characters - 500<br>
+<input type="button" onclick="addComment()" value="Comment" />
+</form></center>
+
+
+<script>
+function addComment() {
+    if(document.getElementById("comavtor").value == "" || document.getElementById("comtext").value == "" ){
+        alert("Please fill in all fields");return false;}
+    if(/^[a-z0-9!@#\$%\^&\*\(\)\[\]:;\'",\.?/{}~`+-<>\=|_ ]+$/i.test(document.getElementById("comavtor").value) && /^[a-z0-9!@#\$%\^&\*\(\)\[\]:;\'",\.?/{}~`+-<>\=|_ ]+$/i.test(document.getElementById("comtext").value)){
+        document.getElementById("comms").innerHTML += document.getElementById("comavtor").value + "<br>" + document.getElementById("comtext").value + "<br><br>";
+        ajax();
+    }
+    else alert("Comment in English, please.");
+}
+function ajax(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("demo").innerHTML = this.responseText;
+        alert(this.responseText);
+    }
+  };
+  xhttp.open("POST", "ajax_quest.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("url=2011/1/50/63&a=" + encodeURIComponent(document.getElementById("comavtor").value)+"&f=" + encodeURIComponent(document.getElementById("comtext").value));
+}
+</script>

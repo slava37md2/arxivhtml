@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>arXivhtml.org is arxiv.org in html-format</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body id="front" class="with-cu-identity">
+<script>
+function timer(){
+    setTimeout(beep, 15000);// через 15 секунд после нажатия на ссылку звучит сигнал
+}
+function beep(){
+var snd2 = new Audio("data:audio/mpeg;base64,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wZ0G7jqlt/OcDIKX+/1NblSX+VKfQfP8xuJJGk7////rf////+PgXTv///1JThJJQainmySAB6imUyuVbVttUo7T4Csa821OuF88f62+CZHFnGf///mQgYIEO0SMF2NVy9NxYTdlqJ8AuS4zr//SJoTUJ+CaKKTcZvosrUPo8W/MUv0f033E9E/QpN6P///v/////WRR2mwUAYUABjabRu1vrOLKAF0kIdHjnEx/iNWo7jGn1////mApxNTJQQOU1Het/NoUFTMQs6Vja///THaGIl/0fojl8mjd/Jo8W+ZfpNpCajsz7////6kn/////WRRgDz//LD1KSTDjKOciSAKxdLx5S31uYqKIWj/+5JECgAC8V5M6g9rdFyr6Vo9rW6KtHcr5DEJQRkSpLRklSigvVc4QpmyPe9H3zHR1/in9P/8VNCMJOzYUDyVjfwHP0ZgiZt/3/+9EBnDKbegdUrckhgntHaQ9vX/X/9A/////+r/////mJ3/9ItRcoVRogAcmV9N8z0pvES8QQsKoMGXEymPQyWm6E4HQLqgpv/CZJAtYXQSwoF8e6SB56zABEoW+qgZjJAZovGr0Gl5/OjFKL3JwnaX9v7/X8y1f/////////49WAzMzEYYMZLq6CUANIqbDX7lisBIdraAEPwShTRc9WZ2vAqBc4NQ9GrUNaw0Czcrte0g1NEoiU8NFjx4NFh54FSwlOlgaCp0S3hqo8SLOh3/63f7P/KgKJxxhgGSnAFMCnIogwU5JoqBIDAuBIiNLETyFmiImtYiDTSlb8ziIFYSFv/QPC38zyxEOuPeVGHQ77r/1u/+kq49//6g4gjoVQSUMYQUSAP8PwRcZIyh2kCI2OwkZICZmaZxgnsNY8DmSCWX0idhtz3VTJSqErTSB//1X7TTTVVV//uSZB2P8xwRJ4HvYcItQlWBACM4AAABpAAAACAAADSAAAAEVf/+qCE000VVVVU0002//+qqqqummmmr///qqqppppoqqqqppppoqqATkEjIyIxBlBA5KwUEDBBwkFhYWFhUVFfiqhYWFhcVFRUVFv/Ff/xUVFRYWFpMQU1FMy45OS41qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqg==");  
+  snd2.play();
+}
+</script>
+
+  <main>
+    
+    
+    <div id="content">
+      <div class="tagline-wrapper"><p class="tagline">arXiv.org is a free distribution service and an open-access archive for 1,694,443
+ scholarly articles in the fields of physics, mathematics, computer science, quantitative biology, quantitative finance, statistics, electrical engineering and systems science, and economics.
+ But we(arxivhtml.org) just transform articles in html-format to read in other languages ​​using google-translator.
+</p></div>
+
+
+<br>
+
+
+<h2>Physics</h2>
+  <ul>
+    <li>
+      Astrophysics
+      (<strong id="astro-ph">astro-ph</strong>)<br/>includes:
+      <a href="https://arxiv.org/list/astro-ph.GA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Astrophysics of Galaxies</a>; 
+      
+      <a href="https://arxiv.org/list/astro-ph.CO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Cosmology and Nongalactic Astrophysics</a>; 
+      
+      <a href="https://arxiv.org/list/astro-ph.EP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Earth and Planetary Astrophysics</a>; 
+      
+      <a href="https://arxiv.org/list/astro-ph.HE/pastweek?skip=0&show=50" onclick='timer();' target="_blank">High Energy Astrophysical Phenomena</a>; 
+      
+      <a href="https://arxiv.org/list/astro-ph.IM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Instrumentation and Methods for Astrophysics</a>; 
+      
+      <a href="https://arxiv.org/list/astro-ph.SR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Solar and Stellar Astrophysics</a>
+      
+    </li>
+    <li>
+      Condensed Matter
+      (<strong id="cond-mat">cond-mat</strong>)<br/>includes:
+      <a href="https://arxiv.org/list/cond-mat.dis-nn/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Disordered Systems and Neural Networks</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.mtrl-sci/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Materials Science</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.mes-hall/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Mesoscale and Nanoscale Physics</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.other/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Other Condensed Matter</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.quant-gas/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Quantum Gases</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.soft/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Soft Condensed Matter</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.stat-mech/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Statistical Mechanics</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.str-el/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Strongly Correlated Electrons</a>; 
+      
+      <a href="https://arxiv.org/list/cond-mat.supr-con/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Superconductivity</a>
+      
+    </li>
+    <li>
+      General Relativity and Quantum Cosmology
+      (<strong id="gr-qc">gr-qc</strong> <a href="https://arxiv.org/list/gr-qc/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      High Energy Physics - Experiment
+      (<strong id="hep-ex">hep-ex</strong> <a href="https://arxiv.org/list/hep-ex/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      High Energy Physics - Lattice
+      (<strong id="hep-lat">hep-lat</strong> <a href="https://arxiv.org/list/hep-lat/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      High Energy Physics - Phenomenology
+      (<strong id="hep-ph">hep-ph</strong> <a href="https://arxiv.org/list/hep-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      High Energy Physics - Theory
+      (<strong id="hep-th">hep-th</strong> <a href="https://arxiv.org/list/hep-th/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      Mathematical Physics
+      (<strong id="math-ph">math-ph</strong> <a href="https://arxiv.org/list/math-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      Nonlinear Sciences
+      (<strong id="nlin">nlin</strong> <a href="https://arxiv.org/list/nlin/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/nlin.AO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Adaptation and Self-Organizing Systems</a>; 
+      
+      <a href="https://arxiv.org/list/nlin.CG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Cellular Automata and Lattice Gases</a>; 
+      
+      <a href="https://arxiv.org/list/nlin.CD/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Chaotic Dynamics</a>; 
+      
+      <a href="https://arxiv.org/list/nlin.SI/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Exactly Solvable and Integrable Systems</a>; 
+      
+      <a href="https://arxiv.org/list/nlin.PS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Pattern Formation and Solitons</a>
+      
+    </li>
+    <li>
+      Nuclear Experiment
+      (<strong id="nucl-ex">nucl-ex</strong> <a href="https://arxiv.org/list/nucl-ex/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      Nuclear Theory
+      (<strong id="nucl-th">nucl-th</strong> <a href="https://arxiv.org/list/nucl-th/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    <li>
+      Physics
+      (<strong id="physics">physics</strong> <a href="https://arxiv.org/list/physics/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/physics.acc-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Accelerator Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.app-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Applied Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.ao-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Atmospheric and Oceanic Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.atm-clus/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Atomic and Molecular Clusters</a>; 
+      
+      <a href="https://arxiv.org/list/physics.atom-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Atomic Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.bio-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Biological Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.chem-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Chemical Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.class-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Classical Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.comp-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computational Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.data-an/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Data Analysis, Statistics and Probability</a>; 
+      
+      <a href="https://arxiv.org/list/physics.flu-dyn/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Fluid Dynamics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.gen-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.geo-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Geophysics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.hist-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">History and Philosophy of Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.ins-det/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Instrumentation and Detectors</a>; 
+      
+      <a href="https://arxiv.org/list/physics.med-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Medical Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.optics/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Optics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.soc-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Physics and Society</a>; 
+      
+      <a href="https://arxiv.org/list/physics.ed-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Physics Education</a>; 
+      
+      <a href="https://arxiv.org/list/physics.plasm-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Plasma Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.pop-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Popular Physics</a>; 
+      
+      <a href="https://arxiv.org/list/physics.space-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Space Physics</a>
+      
+    </li>
+    <li>
+      Quantum Physics
+      (<strong id="quant-ph">quant-ph</strong> <a href="https://arxiv.org/list/quant-ph/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)
+      
+      
+    </li>
+    
+  </ul>
+  <h2>Mathematics</h2>
+  <ul>
+    <li>
+      Mathematics
+      (<strong id="math">math</strong> <a href="https://arxiv.org/list/math/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes :
+      <a href="https://arxiv.org/list/math.AG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Algebraic Geometry</a>; 
+      
+      <a href="https://arxiv.org/list/math.AT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Algebraic Topology</a>; 
+      
+      <a href="https://arxiv.org/list/math.AP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Analysis of PDEs</a>; 
+      
+      <a href="https://arxiv.org/list/math.CT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Category Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.CA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Classical Analysis and ODEs</a>; 
+      
+      <a href="https://arxiv.org/list/math.CO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Combinatorics</a>; 
+      
+      <a href="https://arxiv.org/list/math.AC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Commutative Algebra</a>; 
+      
+      <a href="https://arxiv.org/list/math.CV/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Complex Variables</a>; 
+      
+      <a href="https://arxiv.org/list/math.DG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Differential Geometry</a>; 
+      
+      <a href="https://arxiv.org/list/math.DS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Dynamical Systems</a>; 
+      
+      <a href="https://arxiv.org/list/math.FA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Functional Analysis</a>; 
+      
+      <a href="https://arxiv.org/list/math.GM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Mathematics</a>; 
+      
+      <a href="https://arxiv.org/list/math.GN/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Topology</a>; 
+      
+      <a href="https://arxiv.org/list/math.GT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Geometric Topology</a>; 
+      
+      <a href="https://arxiv.org/list/math.GR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Group Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.HO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">History and Overview</a>; 
+      
+      <a href="https://arxiv.org/list/math.IT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Information Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.KT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">K-Theory and Homology</a>; 
+      
+      <a href="https://arxiv.org/list/math.LO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Logic</a>; 
+      
+      <a href="https://arxiv.org/list/math.MP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Mathematical Physics</a>; 
+      
+      <a href="https://arxiv.org/list/math.MG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Metric Geometry</a>; 
+      
+      <a href="https://arxiv.org/list/math.NT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Number Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.NA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Numerical Analysis</a>; 
+      
+      <a href="https://arxiv.org/list/math.OA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Operator Algebras</a>; 
+      
+      <a href="https://arxiv.org/list/math.OC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Optimization and Control</a>; 
+      
+      <a href="https://arxiv.org/list/math.PR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Probability</a>; 
+      
+      <a href="https://arxiv.org/list/math.QA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Quantum Algebra</a>; 
+      
+      <a href="https://arxiv.org/list/math.RT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Representation Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.RA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Rings and Algebras</a>; 
+      
+      <a href="https://arxiv.org/list/math.SP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Spectral Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.ST/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Statistics Theory</a>; 
+      
+      <a href="https://arxiv.org/list/math.SG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Symplectic Geometry</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Computer Science</h2>
+  <ul>
+    <li>
+      Computing Research Repository
+      (<strong id="cs">CoRR</strong> <a href="https://arxiv.org/list/cs/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/cs.AI/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Artificial Intelligence</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CL/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computation and Language</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computational Complexity</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CE/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computational Engineering, Finance, and Science</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computational Geometry</a>; 
+      
+      <a href="https://arxiv.org/list/cs.GT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computer Science and Game Theory</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CV/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computer Vision and Pattern Recognition</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CY/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computers and Society</a>; 
+      
+      <a href="https://arxiv.org/list/cs.CR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Cryptography and Security</a>; 
+      
+      <a href="https://arxiv.org/list/cs.DS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Data Structures and Algorithms</a>; 
+      
+      <a href="https://arxiv.org/list/cs.DB/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Databases</a>; 
+      
+      <a href="https://arxiv.org/list/cs.DL/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Digital Libraries</a>; 
+      
+      <a href="https://arxiv.org/list/cs.DM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Discrete Mathematics</a>; 
+      
+      <a href="https://arxiv.org/list/cs.DC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Distributed, Parallel, and Cluster Computing</a>; 
+      
+      <a href="https://arxiv.org/list/cs.ET/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Emerging Technologies</a>; 
+      
+      <a href="https://arxiv.org/list/cs.FL/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Formal Languages and Automata Theory</a>; 
+      
+      <a href="https://arxiv.org/list/cs.GL/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Literature</a>; 
+      
+      <a href="https://arxiv.org/list/cs.GR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Graphics</a>; 
+      
+      <a href="https://arxiv.org/list/cs.AR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Hardware Architecture</a>; 
+      
+      <a href="https://arxiv.org/list/cs.HC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Human-Computer Interaction</a>; 
+      
+      <a href="https://arxiv.org/list/cs.IR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Information Retrieval</a>; 
+      
+      <a href="https://arxiv.org/list/cs.IT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Information Theory</a>; 
+      
+      <a href="https://arxiv.org/list/cs.LO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Logic in Computer Science</a>; 
+      
+      <a href="https://arxiv.org/list/cs.LG/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Machine Learning</a>; 
+      
+      <a href="https://arxiv.org/list/cs.MS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Mathematical Software</a>; 
+      
+      <a href="https://arxiv.org/list/cs.MA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Multiagent Systems</a>; 
+      
+      <a href="https://arxiv.org/list/cs.MM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Multimedia</a>; 
+      
+      <a href="https://arxiv.org/list/cs.NI/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Networking and Internet Architecture</a>; 
+      
+      <a href="https://arxiv.org/list/cs.NE/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Neural and Evolutionary Computing</a>; 
+      
+      <a href="https://arxiv.org/list/cs.NA/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Numerical Analysis</a>; 
+      
+      <a href="https://arxiv.org/list/cs.OS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Operating Systems</a>; 
+      
+      <a href="https://arxiv.org/list/cs.OH/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Other Computer Science</a>; 
+      
+      <a href="https://arxiv.org/list/cs.PF/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Performance</a>; 
+      
+      <a href="https://arxiv.org/list/cs.PL/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Programming Languages</a>; 
+      
+      <a href="https://arxiv.org/list/cs.RO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Robotics</a>; 
+      
+      <a href="https://arxiv.org/list/cs.SI/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Social and Information Networks</a>; 
+      
+      <a href="https://arxiv.org/list/cs.SE/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Software Engineering</a>; 
+      
+      <a href="https://arxiv.org/list/cs.SD/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Sound</a>; 
+      
+      <a href="https://arxiv.org/list/cs.SC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Symbolic Computation</a>; 
+      
+      <a href="https://arxiv.org/list/cs.SY/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Systems and Control</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Quantitative Biology</h2>
+  <ul>
+    <li>
+      Quantitative Biology
+      (<strong id="q-bio">q-bio</strong> <a href="https://arxiv.org/list/q-bio/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/q-bio.BM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Biomolecules</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.CB/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Cell Behavior</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.GN/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Genomics</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.MN/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Molecular Networks</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.NC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Neurons and Cognition</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.OT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Other Quantitative Biology</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.PE/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Populations and Evolution</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.QM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Quantitative Methods</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.SC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Subcellular Processes</a>; 
+      
+      <a href="https://arxiv.org/list/q-bio.TO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Tissues and Organs</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Quantitative Finance</h2>
+  <ul>
+    <li>
+      Quantitative Finance
+      (<strong id="q-fin">q-fin</strong> <a href="https://arxiv.org/list/q-fin/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/q-fin.CP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computational Finance</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.EC/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Economics</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.GN/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Finance</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.MF/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Mathematical Finance</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.PM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Portfolio Management</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.PR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Pricing of Securities</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.RM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Risk Management</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.ST/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Statistical Finance</a>; 
+      
+      <a href="https://arxiv.org/list/q-fin.TR/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Trading and Market Microstructure</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Statistics</h2>
+  <ul>
+    <li>
+      Statistics
+      (<strong id="stat">stat</strong> <a href="https://arxiv.org/list/stat/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/stat.AP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Applications</a>; 
+      
+      <a href="https://arxiv.org/list/stat.CO/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Computation</a>; 
+      
+      <a href="https://arxiv.org/list/stat.ML/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Machine Learning</a>; 
+      
+      <a href="https://arxiv.org/list/stat.ME/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Methodology</a>; 
+      
+      <a href="https://arxiv.org/list/stat.OT/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Other Statistics</a>; 
+      
+      <a href="https://arxiv.org/list/stat.TH/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Statistics Theory</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Electrical Engineering and Systems Science</h2>
+  <ul>
+    <li>
+      Electrical Engineering and Systems Science
+      (<strong id="eess">eess</strong> <a href="https://arxiv.org/list/eess/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/eess.AS/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Audio and Speech Processing</a>; 
+      
+      <a href="https://arxiv.org/list/eess.IV/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Image and Video Processing</a>; 
+      
+      <a href="https://arxiv.org/list/eess.SP/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Signal Processing</a>; 
+      
+      <a href="https://arxiv.org/list/eess.SY/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Systems and Control</a>
+      
+    </li>
+    
+  </ul>
+  <h2>Economics</h2>
+  <ul>
+    <li>
+      Economics
+      (<strong id="econ">econ</strong> <a href="https://arxiv.org/list/econ/pastweek?skip=0&show=50" onclick='timer();' target="_blank">recent</a>)<br/>includes:
+      <a href="https://arxiv.org/list/econ.EM/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Econometrics</a>; 
+      
+      <a href="https://arxiv.org/list/econ.GN/pastweek?skip=0&show=50" onclick='timer();' target="_blank">General Economics</a>; 
+      
+      <a href="https://arxiv.org/list/econ.TH/pastweek?skip=0&show=50" onclick='timer();' target="_blank">Theoretical Economics</a>
+      
+    </li>
+    
+  </ul>
+  
+
+<hr />
+<h2>About arXiv</h2>
+<ul>
+  <li><a href="https://arxiv.org/about">General information</a></li>
+  <li><a href="https://arxiv.org/help/submit">How to Submit to arXiv</a></li>
+  <li><a href="https://arxiv.org/new">News</a></li>
+  <li><a href="https://arxiv.org/about/give">Membership &amp; Giving</a></li>
+  <li><a href="https://arxiv.org/about/people">Who arxiv.org Are</a></li>
+</ul>
+
+
+    </div>
+  </main>
+
+  
+</body>
+
+</html>
