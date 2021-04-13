@@ -1,0 +1,60 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8" />
+<title>SkyScript — Простые бесплатные PHP-скрипты</title>
+<link rel="shortcut icon" href="pic/skyico.ico">
+<link href="st.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="scripts/form.js"></script>
+</head>
+
+<body><center>
+<div class="baza"></center>
+<p class="name">Инструкция по установке скрипта <strong>SkyBlog</strong></p>
+<p><span class="bginp2">1.</span> Переписываем содержимое папки <strong>SkyBlog</strong> в корневую папку на Вашем хостинге.</p>
+<p><span class="bginp2">2.</span> Вносим изменения в файл<strong> db.php</strong></p>
+<p><img src="instrpic/01.png" width="734" height="65" /></p>
+<blockquote>
+  <p>&nbsp;</p>
+  <p>На примере локального Денвера расскажу где чего брать</p>
+  <p>1. Запускаем Денвер (или другой сервер)</p>
+  <p>2. В адресной строке набираем <strong>http://127.0.0.1/tools/phpmyadmin/</strong> попадаем в панель управления базой данных MySQL (такая панель имеется почти на каждом хостинге)</p>
+  <p>3. Создаем базу данных введя ее название в окно:</p>
+  <p><img src="instrpic/02.png" width="660" height="91" /></p>
+  <p>вбиваем например <strong>newbaza</strong> и жмем создать.</p>
+  <p>&nbsp;</p>
+  <p>4. Возвращаемся на главную страницу <strong>http://127.0.0.1/tools/phpmyadmin/</strong> (щелкаем на домик слева)</p>
+  <p><img src="instrpic/03.png" width="666" height="220" /></p>
+  <p>и нажимаем ссылку <strong>Привелегии</strong></p>
+  <p>&nbsp;</p>
+  <p><img src="instrpic/04.png" width="695" height="45" /></p>
+  <p> далее нажимаем <strong>добавить нового пользователя</strong></p>
+  <p>&nbsp;</p>
+  <p><img src="instrpic/05.png" width="733" height="561" /></p>
+  <p>Заполняем следующим образом:</p>
+  <p><strong>Имя пользователя</strong>: любое, например<strong> user</strong></p>
+  <p><strong>Хост:</strong> любой хост</p>
+  <p><strong>Пароль: </strong>например <strong>123</strong></p>
+  <p>Обязательно нажимаем  в привелегиях <strong>Отметить все</strong> и нажимаем <strong>Пошел</strong></p>
+  <p>&nbsp;</p>
+  <p>5. После создания пользователя и базы данных файл <strong>db.php </strong>заполняем следующим образом:</p>
+  <p><img src="instrpic/06.png" width="377" height="65" /></p>
+</blockquote>
+<p>&nbsp;</p>
+<p><span class="bginp2">3.</span> Заходим в панель управления базой данных MySQL (для Денвера: В адресной строке набираем <strong>http://127.0.0.1/tools/phpmyadmin/</strong>) и выбираем нашу базу. </p>
+<p><img src="instrpic/07.png" width="573" height="273" /></p>
+<p>Нажимаем ссылку SQL</p>
+<p>&nbsp;</p>
+<p><img src="instrpic/08.png" width="798" height="323" /></p>
+<p>Нажимаем обзор и находим файл <strong>skyblog.sql</strong> </p>
+<p>Нажимаем <strong>пошел</strong> и все таблицы для работы скрипта будут созданы.</p>
+<p>Запускаем <strong>index.php</strong> и работаем со скриптом</p>
+<p>Для входа в панель администрирования в адресной строке набираем <strong>admin</strong> (SkyBlog/admin). </p>
+<p>логин: <strong>admin</strong> пароль: <strong>admin</strong></p>
+<hr>
+<p>Пользоваться скриптом <strong>SkyBlog можно абсолютно бесплатно</strong><br />
+  Разрешается менять исходный код файлов<br />
+  <strong>SkyBlog</strong> распространяется по принципу &quot;as is&quot; (<strong>&quot;как есть&quot;</strong>). Это означает, что вы   пользуетесь продуктом на свой страх и риск. Автор не дает никаких гарантий и не несет   никакой ответственности за возможный ущерб и убытки любого рода.</p>
+<p>Замечания, предложения оставляйте в комментариях на сайте <a href="http://www.skyscript.ru"><strong>skyscript.ru</strong></a></p>
+</div>
+
+</body>
+</html>

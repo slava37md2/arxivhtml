@@ -1,0 +1,276 @@
+@charset "UTF8";
+/* SkyScript.ru 2009 windows-1251  */
+
+body {
+margin:0;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:12px;
+color:#666666;
+}
+
+td {
+font-size:12px;
+}
+h1 {
+color:#ec008c;
+font-size:14px;
+margin-bottom:10px;
+margin-top:10px;
+text-align:center;
+}
+
+a {
+text-decoration:none;
+color: #ec008c;
+}
+input {
+margin-top:10px;
+border:1px solid #f199bf;
+color:#666666;
+background-color:#fef3f7;
+}
+
+textarea {
+margin-top:10px;
+border:1px solid #f199bf;
+color:#666666;
+}
+
+form {
+margin:0;
+padding:0;
+
+}
+
+.bginp1 {
+	BACKGROUND-COLOR: #ffffff;
+}
+.bginp2 {
+	BACKGROUND-COLOR: #fef3f7;
+}
+
+.baza {
+width:800px;
+background-color:#FFFFFF;
+border:1px solid #ec008c;
+margin-top:30px;
+padding:20px;
+}
+.zag {
+padding-bottom:5px;
+margin-bottom:20px;
+border-bottom:1px solid #f2f2f2;
+font-size:14px;
+color: #ec008c;
+}
+.otvet {
+margin-left:20px;
+font-size:12px;
+color:#ec008c;
+}
+
+.podpis {
+font-size:9px;
+color:#999999;
+margin-bottom:10px;
+margin-top:10px;
+}
+
+.zapis {
+border-top:1px solid #999999;
+width:500px;
+margin-top:20px;
+margin:5px;
+
+
+}
+
+.name {
+font-size:12px;
+color: #ec008c;
+margin-top:10px;
+margin-bottom:10px;
+text-align:left;
+
+
+}
+
+.dob {
+color:#ec008c;
+margin:15px;
+font-size:12px;
+}
+
+.alert {
+color:#ec008c;
+padding-left:40px;
+border-top:1px solid #ec008c;
+border-bottom:1px solid #ec008c;
+font-size:12px;
+margin-bottom:10px;
+width:500px;
+padding-top:10px;
+padding-bottom:10px;
+background-color: #fef3f7;
+background-image:url(pic/allert.png);
+background-repeat:no-repeat;
+
+}
+
+.ok {
+color:#ec008c;
+padding-left:40px;
+border-top:1px solid #ec008c;
+border-bottom:1px solid #ec008c;
+font-size:12px;
+margin-bottom:10px;
+width:500px;
+padding-top:10px;
+padding-bottom:10px;
+background-color: #fef3f7;
+background-image:url(pic/ok.png);
+background-repeat:no-repeat;
+
+}
+
+.pole {
+text-align:left;
+color:#666666;
+}
+.sm {
+font-size:10px;
+color:#6666dd;
+}
+.sm2 {
+font-size:10px;
+color:#666666;
+}
+.kr {
+font-size:12px;
+color: #ec008c;
+margin-top:10px;
+margin-bottom:10px;
+}
+.pstrnav {
+font-size:10px;
+}
+
+/* okno */
+.okno_verh {
+width:220px;
+height:5px;
+font-size:1px;
+background-image:url(pic/okno_verh.png);
+background-repeat:no-repeat;
+}
+
+.okno_bg {
+width:220px;
+background-image:url(pic/okno_bg.png);
+padding:4px;
+}
+
+.okno_title {
+padding:8px;
+background-image:url(pic/okno_bg_title.png);
+background-repeat:no-repeat;
+height:32px;
+color:#FFFFFF;
+font-weight:bold;
+}
+
+.okno_int {
+padding:8px;
+background-image:url(pic/okno_bg_gradient.png);
+background-position:bottom;
+background-repeat:repeat-x;
+}
+
+.okno_niz {
+width:220px;
+height:5px;
+background-image:url(pic/okno_niz.png);
+background-repeat:no-repeat;
+font-size:1px;
+}
+
+/* ^^ okno */
+
+/* bolokno */
+.bolokno_verh {
+width:710px;
+height:5px;
+font-size:1px;
+background-image:url(pic/bolokno_verh.png);
+background-repeat:no-repeat;
+}
+
+.bolokno_bg {
+width:710px;
+background-image:url(pic/bolokno_bg.png);
+padding:4px;
+}
+
+.bolokno_title {
+padding:8px;
+background-image:url(pic/bolokno_bg_title.png);
+background-repeat:no-repeat;
+height:32px;
+color:#ec008c;
+font-weight:bold;
+}
+
+.bolokno_int {
+padding:8px;
+background-image:url(pic/bolokno_bg_gradient.png);
+background-position:bottom;
+background-repeat:repeat-x;
+}
+
+.bolokno_niz {
+width:710px;
+height:5px;
+background-image:url(pic/bolokno_niz.png);
+background-repeat:no-repeat;
+font-size:1px;
+margin-bottom:20px;
+}
+
+/* ^^ bolokno */
+
+/* ^^ catmenu */
+.catsel {
+padding-top:5px;
+padding-bottom:5px;
+display: block;
+text-decoration: none;
+font-weight:bold;
+border-bottom: 1px solid #f2f2f2;
+color:#666666;
+}
+.cat a{
+padding-top:5px;
+padding-bottom:5px;
+display: block;
+text-decoration: none;
+border-bottom: 1px solid #f2f2f2;
+color:#666666;
+}
+
+.cat a:hover{
+background-color: #f2f2f2; 
+}
+
+.catsm a{
+font-size:10px;
+padding-top:5px;
+padding-bottom:5px;
+display: block;
+text-decoration: none;
+border-bottom: 1px solid #f2f2f2;
+color:#666666;
+}
+
+.catsm a:hover{
+background-color: #f2f2f2; 
+}
