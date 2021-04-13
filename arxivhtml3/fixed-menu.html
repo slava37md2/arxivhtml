@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Фиксированное меню</title>
+  <style>
+   .pdf-frame {
+    position: fixed; /* Фиксированное положение */
+    /*left: 10px;  Расстояние от левого края окна браузера */
+    top: 0%; /* Расстояние сверху */
+    /*padding: 10px;  Поля вокруг текста */ 
+    /*background: #ffe;  Цвет фона 
+    background-color: rgba (254,253,252,1.0);*/ 
+    border: 1px solid #333; /* Параметры рамки */ 
+    z-index: 9999;
+   }
+  </style>
+ </head>
+ <body>
+  <div class="pdf-frame">
+    <iframe src="../arxivhtml2/helloworld.pdf" width="1200" height="500" align="left">
+    Ваш браузер не поддерживает плавающие фреймы!
+    </iframe>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>Increasing negotiation performance at the edge of the network
+Sam Vente1[0000-0002-5485-6571], Angelika Kimmig1[0000-0002-6742-4057], Alun Preece1[0000-0003-0349-9057], and Federico Cerutti2 1[0000-0003-0755-0358]
+1
+Cardiff University, Cardiff, CF10 3AT, UK {VenteDA,KimmigA,PreeceAD,CeruttiF}@cardiff.ac.uk 2 Department of Information Engineering, University of Brescia, Italy federico.cerutti@unibs.it
+
+⋆This research was sponsored by the U.S. Army Research Laboratory and the U.K. Ministry of Defence under Agreement Number W911NF-16-3-0001. The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the U.S. Army Research Laboratory, the U.S. Government, the U.K. Ministry of Defence or the U.K. Government. The U.S. and U.K. Governments are authorized to reproduce and distribute reprints for Government purposes notwithstanding any copyright notation hereon.
+Abstract Automated negotiation has been used in a variety of distributed settings, such as privacy in the Internet of Things (IoT) devices and power distribution in Smart Grids. The most common protocol under which these agents negotiate is the Alternating Offers Protocol (AOP). Under this protocol, agents cannot express any additional information to each other besides a counter offer. This can lead to unnecessarily long negotiations when, for example, negotiations are impossible, risking to waste bandwidth that is a precious resource at the edge of the network. While alternative protocols exist which alleviate this problem, these solutions are too complex for low power devices, such as IoT sensors operating at the edge of the network. To improve this bottleneck, we introduce an extension to AOP called Alternating Constrained Offers Protocol (ACOP), in which agents can also express constraints to each other. This allows agents to both search the possibility space more efficiently and recognise impossible situations sooner. We empirically show that agents using ACOP can significantly reduce the number of messages a negotiation takes, independently of the strategy agents choose. In particular, we show our method significantly reduces the number of messages when an agreement is not possible. Furthermore, when an agreement is possible it reaches this agreement sooner with no negative effect on the utility.
+Keywords: Automated negotiation⋅ Multi-agent systems⋅ Constraints
+
+1 Introduction
+Autonomous agents, in particular those at the edge of the network—near to the source of the data like single or cooperative sensors—often need to coordinate actions to achieve a shared goal: for instance, they might need to negotiate either access to local data to learn a shared model; or access to a shared resource like bandwidth; or joint actions for complex activities such as patrolling an area against wildfires (cf. Section 2).
+Automated negotiation can provide a solution, by allowing agents to reach a mutual consensus on what should and what should not be shared. However, the standard method of negotiation under the Alternating Offers Protocol (AOP, Section 3) [1] can be resource intensive and in particular bandwidth intensive due to the number of messages that need to be exchanged before an outcome can be determined. This might be particularly wasteful when considering autonomous agents at the edge of the network, which have limited bandwidth resources. At the same time, because such agents are often deployed on low-power devices, they cannot be equipped with extremely complex reasoning capabilities able to learn and predict other agents’ behaviour.
+In Section 4 we present a novel extension of AOP called Alternating Constrained Offers Protocol (ACOP), that provides a suitable trade-off between reasoning capabilities and bandwidth usage, allowing agents to express constraints on any possible solution along with the proposals they generate. This allows agents to search more effectively for proposals that have a higher probability of being accepted by the adversary. To measure the impact of this on the length and outcomes of negotiations, we perform empirical analysis on a dataset of simulated negotiations (Section 5). To summarise, in this work we will address the following questions:
+
+Do negotiations operating under ACOP exchange fewer messages than negotiations operating under AOP in similar scenarios?
+Does adopting ACOP negatively impact the outcome of negotiations when compared to negotiations using AOP?
+Results summarised in Section 6 provide evidence that negotiations operating under ACOP require substantially fewer messages than negotiations operating under AOP, without negatively affecting the utility of the outcome.
+2 Context and Motivating Examples
+ </body>
+</html>
