@@ -1,0 +1,1180 @@
+<span 
+class="ecrm-1000">table.1</span>
+                                                                                  
+                                                                                                                              
+       <?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<!--http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd-->  
+<html xmlns="http://www.w3.org/1999/xhtml"  
+> 
+<head><title>AGNet: Weighing Black Holes with Machine Learning</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)" /> 
+<!-- xhtml,charset=utf-8,html --> 
+<meta name="src" content="main.tex" /> 
+<link rel="stylesheet" type="text/css" href="main.css" /> 
+</head><body 
+>
+       <div class="maketitle">
+       _______________________________________________________________________________________________________________________________________________________________
+<h2 class="titleHead">AGNet: Weighing Black Holes with Machine
+Learning</h2>____________________________________________________________________________
+          <div class="author" > <span 
+class="ptmb8t-">Joshua Yao-Yu Lin</span><span 
+class="cmsy-7">∗</span>
+<br />University of Illinois at Urbana-Champaign
+<br />                              NCSA<br /> Urbana, IL,USA
+<br />             <span 
+class="ectt-1000">yaoyuyl2@illinois.edu</span><br />
+<br />
+           <span 
+class="ptmb8t-">Sneh Pandya</span><span 
+class="cmsy-7">∗</span>
+<br />University of Illinois at Urbana-Champaign
+<br />                              NCSA<br /> Urbana, IL,USA
+<br />              <span 
+class="ectt-1000">snehjp2@illinois.edu</span><br />
+<br />
+          <span 
+class="ptmb8t-">Devanshi Pratap</span>
+<br />                           Microsoft<br />University of Illinois at Urbana-Champaign
+<br />                              NCSA<br /> Urbana, IL,USA
+<br />          <span 
+class="ectt-1000">pratapdevanshi@gmail.com</span><br />
+<br />
+             <span 
+class="ptmb8t-">Xin Liu</span><br />University of Illinois at Urbana-Champaign
+<br />                              NCSA<br /> Urbana, IL,USA
+<br />             <span 
+class="ectt-1000">xinliuxl@illinois.edu</span><br /><br />
+             <span 
+class="ptmb8t-">Matias Carrasco Kind</span><br />National Center for Supercomputing Applications (NCSA)
+<br />            University of Illinois at Urbana-Champaign
+<br />                                 Urbana, IL, USA<br /> 
+<span 
+class="ectt-1000">mcarras2@illinois.edu</span><br /> </div><br />
+                                                                                   
+                                                                                   
+       <hr class="float" /><div class="float" 
+>
+                                                                                   
+                                                                                   
+       <span 
+class="ptmr8t-x-x-90">Third Workshop on Machine Learning and the Physical Sciences (NeurIPS 2020), Vancouver, Canada.</span>
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+       </div><hr class="endfloat" />
+       </div>
+       <div 
+class="abstract" 
+>
+       <div  
+class="centerline">                                                                              <span 
+class="ptmb8t-x-x-120">Abstract</span>                                                           </div>
+              <div class="quote">
+              <!--l. 91--><p class="noindent" >Supermassive  black  holes  (SMBHs)  are  ubiquitously  found  at  the  centers  of
+              most galaxies. Measuring SMBH mass is important for understanding the origin
+              and  evolution  of  SMBHs.  However,  traditional  methods  require  spectral  data
+              which  is  expensive  to  gather.  To  solve  this  problem,  we  present  an  algorithm
+              that weighs SMBHs using quasar light time series, circumventing the need for
+              expensive spectra. We train, validate, and test neural networks that directly learn
+              from the Sloan Digital Sky Survey (SDSS) Stripe 82 data for a sample of <span 
+class="cmr-10">9</span><span 
+class="cmmi-10">,</span><span 
+class="cmr-10">038</span>
+              spectroscopically confirmed quasars to map out the nonlinear encoding between
+              black  hole  mass  and  multi-color  optical  light  curves.  We  find  a  1<span 
+class="cmmi-10">σ </span>scatter  of
+              0.35 dex between the predicted mass and the fiducial virial mass based on SDSS
+              single-epoch spectra. Our results have direct implications for efficient applications
+              with future observations from the Vera Rubin Observatory.
+       </p>
+              </div>
+       </div>
+       <h3 class="sectionHead"><span class="titlemark">1    </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+       <!--l. 98--><p class="noindent" >Supermassive black holes (SMBHs) with masses of millions to tens of billions times the mass of the Sun
+       are commonly found at the hearts of massive galaxies <span class="cite">[<a 
+href="#XKormendyHo2013">1</a>]</span>. While black holes themselves are invisible, as
+       light cannot escape them, the associated phenomena are visible. These actively feeding SMBH are known
+       as Active Galactic Nuclei (AGN). The most dramatic of these is called a quasar. Quasars are among the
+       most powerful and distant objects in the universe <span class="cite">[<a 
+href="#XSchmidt1968">2</a>]</span>. The glow of matter as it falls into SMBHs is what
+       makes quasars so bright <span class="cite">[<a 
+href="#XRees1984">3</a>]</span>.
+       </p><!--l. 102--><p class="noindent" >Quasars provide a window to study how a SMBH grows with time <span class="cite">[<a 
+href="#XSoltan1982">4</a>]</span>. Because of their brightness, it is
+       possible to detect quasars almost close to the edge of the observable universe <span class="cite">[<a 
+href="#XBanados2018">5</a>]</span>. They offer a “standard
+       candle” to study the expansion history of the universe to understand the nature of Dark Energy <span class="cite">[<a 
+href="#XKing2014">6</a>, <a 
+href="#XDultzin2020">7</a>]</span> –
+       arguably the biggest mystery in contemporary astrophysics.
+       </p><!--l. 104--><p class="noindent" >Measuring SMBH mass and redshift is important for understanding the origin and evolution of quasars.
+       However, traditional methods require spectral data which is highly expensive; the existing <span 
+class="cmsy-10">∼</span>0.5
+       million mass estimates represent about 30 years’ worth of community efforts <span class="cite">[<a 
+href="#XShen2013">8</a>, <a 
+href="#Xrakshit2020spectral">9</a>]</span>. The Vera C.
+       Rubin Observatory <span class="cite">[<a 
+href="#XIvezic2019">10</a>]</span> Legacy Survey of Space and time (LSST) will discover <span 
+class="cmsy-10">∼</span>17 million
+       quasars<span class="footnote-mark"><a 
+href="main2.html#fn1x0"><sup class="textsuperscript">1</sup></a></span><a 
+ id="x1-1001f1"></a> . A
+       much more efficient approach for estimating SMBH mass is needed to maximize LSST AGN science,
+       which is, however, still lacking.
+       </p><!--l. 108--><p class="noindent" >Here we present a new approach to solve the problem based on Machine Learning (ML). ML has been
+       applied for many applications in astronomy <span class="cite">[<a 
+href="#XCabrera-Vives2017">11</a>, <a 
+href="#XCharnock2017">12</a>, <a 
+href="#XKim2017">13</a>, <a 
+href="#XGeorge2018a">14</a>, <a 
+href="#XHuang2018">15</a>, <a 
+href="#XLanusse2018">16</a>, <a 
+href="#XRibli2018">17</a>, <a 
+href="#XBurke2019">18</a>, <a 
+href="#Xyao2020feature">19</a>]</span>. Recently, ML has been
+       employed to classify quasars and predict their cosmological redshift <span class="cite">[<a 
+href="#XPasquet-Itam2018">20</a>]</span> using data from the Sloan Digital
+       Sky Survey <span class="cite">[<a 
+href="#Xyork2000sloan">21</a>]</span> Autoencoders have also been used to extract time series features to model the quasar
+       variability and estimate quasar mass <span class="cite">[<a 
+href="#Xtachibana2020deep">22</a>]</span>.
+       </p><!--l. 111--><p class="noindent" >The current work represents the first ML application for predicting quasar mass with multi-band time series.
+                                                                                                                                                                      
+                                                                                                                                                                      
+       Our ML approach is well motivated. There is empirical evidence and theoretical reasons to believe that the
+       quasar light curve encodes physical information about its SMBH mass <span class="cite">[<a 
+href="#Xkelly2009variations">23</a>, <a 
+href="#Xmacleod2010modeling">24</a>]</span>. However, the encoding is
+       nonlinear and difficult to model using standard statistics. We train neural networks that directly learn from
+       the data to map out the nonlinear encoding. Our approach is fundamentally different from previous
+       methods. The networks directly weigh SMBHs using quasar light curves, which are much cheaper to
+       collect for a large sample. Our scheme is directly applicable for the Vera C. Rubin Observatory
+       LSST <span class="cite">[<a 
+href="#XIvezic2019">10</a>]</span>, achieving a high efficiency by circumventing the need for expensive spectroscopic
+       observations.
+       </p>
+       <h3 class="sectionHead"><span class="titlemark">2    </span> <a 
+ id="x1-20002"></a>Data and Method</h3>
+       <!--l. 119--><p class="noindent" >
+       </p>
+       <h4 class="subsectionHead"><span class="titlemark">2.1    </span> <a 
+ id="x1-30002.1"></a>Data</h4>
+       <!--l. 121--><p class="noindent" >
+       </p>
+       <h5 class="subsubsectionHead"><span class="titlemark">2.1.1    </span> <a 
+ id="x1-40002.1.1"></a>SDSS Stripe 82 Light Curves</h5>
+       <!--l. 123--><p class="noindent" >We adopt multi-color light curves from the SDSS Stripe 82 as our training and testing data. Our sample
+       consists of <span 
+class="cmsy-10">∼</span>10,000 quasars. We take the mean of the <span 
+class="ptmri8t-">ugriz </span>magnitudes as features. We adopt the additional
+       time series features from the Damped-Random-Walk model fitting parameters <span class="cite">[<a 
+href="#Xmacleod2010modeling">24</a>]</span>, such as the
+       variability timescale (<span 
+class="cmmi-10">τ</span>) and variance, (<span 
+class="cmmi-10">σ</span>). Time series features have shown to be useful in
+       predicting quasar redshift <span class="cite">[<a 
+href="#XPasquet-Itam2018">20</a>]</span> using the Python library Feature Analysis Time Series (FATS)
+       <span class="cite">[<a 
+href="#Xnun2015fats">25</a>]</span>.
+       </p><!--l. 137--><p class="noindent" >
+       </p>
+       <h5 class="subsubsectionHead"><span class="titlemark">2.1.2    </span> <a 
+ id="x1-50002.1.2"></a>Virial Black Hole Mass and Spectroscopic Redshift</h5>
+       <!--l. 139--><p class="noindent" >We assume the virial SMBH mass estimates from <span class="cite">[<a 
+href="#XShen2011">26</a>]</span> and the spectroscopic redshifts as the ground truth.
+       Cosmological redshift is the distortion of light caused by the expansion of space.
+       </p><!--l. 145--><p class="noindent" >
+       </p>
+       <h4 class="subsectionHead"><span class="titlemark">2.2    </span> <a 
+ id="x1-60002.2"></a>Data Preprocessing</h4>
+       <!--l. 150--><p class="noindent" >We first clean the sample by removing quasars with no reliable virial mass estimates (e.g. due to low
+       spectroscopic data quality). In addition to using the mean <span 
+class="ptmri8t-">ugriz </span>bands as features, we compute the
+       colors (<span 
+class="cmmi-10">u </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">g</span>, <span 
+class="cmmi-10">g </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">r</span>, <span 
+class="cmmi-10">r </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">i</span>, <span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">z</span>, <span 
+class="cmmi-10">z </span><span 
+class="cmsy-10">− </span><span 
+class="cmmi-10">u</span>) as features for a quasar. The colors are more robust
+       features than the individual bands in that they provide more information regarding the quasar’s
+       spectral energy distribution (SED) and temperature. We further use cosmological redshift and
+       K-corrected <span 
+class="cmmi-10">i</span>-band magnitude (<span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>) as features in predicting mass to provide enough information
+       for the network to infer the intrinsic luminosity of the quasar. To standardize the effect of our
+       features in training we apply the scikit-learn <span 
+class="ptmri8t-">StandardScaler </span>which removes the mean and scales
+                                                                                                                                                                      
+                                                                                                                                                                      
+       the data to unit variance. We split our baseline dataset into an 85<span 
+class="cmr-10">% </span>training and 15<span 
+class="cmr-10">% </span>testing
+       set.
+       </p>
+       <hr class="figure" /><div class="figure" 
+>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <a 
+ id="x1-60011"></a>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <!--l. 181--><p class="noindent" > <img 
+src="Images/flowchart2-.png" alt="PIC"  
+ />
+       <br /> </p><div class="caption" 
+><span class="id">Figure 1: </span><span  
+class="content">AGNet Implementation Flowchart.</span></div><!--tex4ht:label?: x1-60011 -->
+                                                                                                                                                                      
+                                                                                                                                                                      
+       </div><hr class="endfigure" />
+       <h4 class="subsectionHead"><span class="titlemark">2.3    </span> <a 
+ id="x1-70002.3"></a>Neural Networks</h4>
+       <!--l. 190--><p class="noindent" >We use Feedforward Neural Networks (FNN) to predict SMBH mass and redshift. Our FNN architecture
+       for SMBH mass prediction features a 9-neuron input layer, followed by 5 hidden layers with 64 neurons
+       each. Our architecture for redshift is identical with exception of a 10-neuron input layer. For the mass
+       implementation we use the SDSS colors, redshift, <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>, and <span 
+class="cmmi-10">τ</span>, <span 
+class="cmmi-10">σ </span>as features, and just using the SDSS
+       magnitudes and colors as features in predicting redshift.
+       </p><!--l. 192--><p class="noindent" >A diagram of our network architecture for mass is shown in Figure 3, with each node representing four
+       neurons. We investigated multiple different combinations of base-8 neuron architectures, and concluded that
+       64 neurons gave the best results. We followed a similar process to determine that network performance did
+       not increase greatly for hidden layers greater than five. We use ReLU activation on all neurons <span class="cite">[<a 
+href="#Xagarap2018relu">27</a>]</span> after
+       each fully connected layer.
+       </p><!--l. 194--><p class="noindent" >We train our neural network with gradient descent based AdamW optimizer, an adaptive learning rate
+       optimization algorithm <span class="cite">[<a 
+href="#Xkingma2014adam">28</a>, <a 
+href="#Xloshchilov2017decoupled">29</a>]</span>, with default learning rate set as <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">01</span>. We optimize our FNN with the
+       SmoothL1 loss function given as:
+       </p>
+       <table 
+class="equation"><tr><td><a 
+ id="x1-7001r1"></a>
+       <center class="math-display" >
+       <img 
+src="main0x.png" alt="   {         2
+ℒ =  0.5(x − y) , |x − y|&#x003C;1
+     |x − y|− 0.5,  otherwise
+       " class="math-display"  /></center></td><td class="equation-label">(1)</td></tr></table>
+       <!--l. 202--><p class="nopar" >
+       where <span 
+class="cmmi-10">x </span>is the network prediction and <span 
+class="cmmi-10">y </span>is the ground truth value. We train for 50 epochs.
+       </p><!--l. 206--><p class="noindent" >Our network currently operates with <span 
+class="cmsy-10">∼</span>20,000 parameters. We investigated a different neural network
+       architecture with less parameters to reduce the chance of overfitting associated with the number of network
+       parameters.
+       </p><!--l. 208--><p class="noindent" >We considered other loss functions, notably mean squared error, but decided on SmoothL1 because
+       of better performance. We previously investigated RNN and CNN architectures using image
+       and tensor transformations to transform light curve image data into 2D numpy tensors. We
+       incorporated transfer learning and applied ResNet18 and Google EfficientNet architectures <span class="cite">[<a 
+href="#Xhe2016deep">30</a>, <a 
+href="#Xtan2019efficientnet">31</a>]</span>,
+       however due to limitations in data sample size and irregular gaps in the light curve data, we
+       found that data preprocessing and engineering helped the neural networks to perform better. We
+       additionally tested a variety of loss functions, feature scalers, and other hyperparameters for
+       tuning.
+       </p>
+       <hr class="figure" /><div class="figure" 
+>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <a 
+ id="x1-70022"></a>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <!--l. 214--><p class="noindent" > <img 
+src="Images/nn-2-.png" alt="PIC"  
+ />
+       <br /> </p><div class="caption" 
+><span class="id">Figure 2: </span><span  
+class="content">Network Architecture (made using NN-SVG). Each hidden layer neuron corresponds to
+       four neurons. See Table <span 
+class="ptmb8t-">??</span> for dimension of input layer. Output neuron can be AGN redshift or AGN
+       SMBH mass depending on implementation.</span></div><!--tex4ht:label?: x1-70022 -->
+                                                                                                                                                                      
+                                                                                                                                                                      
+       </div><hr class="endfigure" />
+       <hr class="figure" /><div class="figure" 
+>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <a 
+ id="x1-70033"></a>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <!--l. 221--><p class="noindent" > <img 
+src="Images/z_plot_DRW-.png" alt="PIC"  
+ />                                                                                                                                                  <img 
+src="Images/mass_plot_DRW4-.png" alt="PIC"  
+ />
+       <br /> </p><div class="caption" 
+><span class="id">Figure 3: </span><span  
+class="content">AGNet predictions for SMBH redshift (left) and AGNet predictions for SMBH mass
+       (right). Ground truth shown by 1:1 black line with network predictions as the scatter. Trained over
+       <span 
+class="cmsy-10">∼</span>7000 quasars using features from original light time series as well as spectroscopic redshift and <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>
+       from SDSS Stripe 82 (§<a 
+href="#x1-40002.1.1">2.1.1<!--tex4ht:ref: subsubsec:s82 --></a>) for mass estimations. Optimized using SmoothL1 loss and AdamW
+       optimizer for 50 epochs of training.</span></div><!--tex4ht:label?: x1-70033 -->
+                                                                                                                                                                      
+                                                                                                                                                                      
+       </div><hr class="endfigure" />
+       <h3 class="sectionHead"><span class="titlemark">3    </span> <a 
+ id="x1-80003"></a>Results</h3>
+       <!--l. 229--><p class="noindent" >
+       </p>
+       <h4 class="subsectionHead"><span class="titlemark">3.1    </span> <a 
+ id="x1-90003.1"></a>Network Performance on Redshift</h4>
+       <!--l. 231--><p class="noindent" >Following <span class="cite">[<a 
+href="#XPasquet-Itam2018">20</a>]</span>, we compare our network performance on redshift estimation. We use <span 
+class="ptmri8t-">ugriz </span>bands and
+       colors as features for predicting redshift following the architecture outlined above. Our best performance
+       gives a RMSE = <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">355 </span>and a <span 
+class="cmmi-10">R</span><sup><span 
+class="cmr-7">2</span></sup> <span 
+class="cmr-10">= 0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">759</span>.
+       </p><!--l. 233--><p class="noindent" >We notice considerable deviation in network prediction for low redshift (<span 
+class="cmmi-10">z &#x003C; </span><span 
+class="cmr-10">1</span>). One possible explanation
+       for this is degeneracy in the color of quasars at redshift <span 
+class="cmmi-10">z &#x003C; </span><span 
+class="cmr-10">1 </span>and quasars at redshift <span 
+class="cmr-10">1 </span><span 
+class="cmmi-10">&#x003C; z &#x003C; </span><span 
+class="cmr-10">2</span>
+       <span class="cite">[<a 
+href="#XRichards_2001">32</a>]</span>.
+       </p><!--l. 236--><p class="noindent" >
+       </p>
+       <h4 class="subsectionHead"><span class="titlemark">3.2    </span> <a 
+ id="x1-100003.2"></a>Network Performance on Mass</h4>
+       <!--l. 239--><p class="noindent" >Using features from <span 
+class="cmsy-10">∼</span>10,000 spectroscopically confirmed quasars from the Sloan Digital Sky Survey, we
+       achieve a RMSE = <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">357 </span>and a <span 
+class="cmmi-10">R</span><sup><span 
+class="cmr-7">2</span></sup> <span 
+class="cmr-10">= 0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">418</span>. For context, this is already comparable to the
+       systematic uncertainty in the spectroscopic mass “ground truth” estimate <span class="cite">[<a 
+href="#XShen2013">8</a>]</span>. We also test mass
+       predictions using information from only the original quasar light time series (see Figure <a 
+href="#x1-60011">1<!--tex4ht:ref: fig:flowchart --></a>). To do
+       this, we use our AGNet architecture to predict <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub> using <span 
+class="cmmi-10">ugriz </span>colors, as well as the redshift
+       predictions (§<a 
+href="#x1-90003.1">3.1<!--tex4ht:ref: subsubsec:z_results --></a>) as testing data in predicting mass. In this test, we achieve RMSE = <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">401 </span>and a
+       <span 
+class="cmmi-10">R</span><sup><span 
+class="cmr-7">2</span></sup> <span 
+class="cmr-10">= 0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">272</span>.
+       </p><!--l. 243--><p class="noindent" >
+       </p>
+       <h4 class="subsectionHead"><span class="titlemark">3.3    </span> <a 
+ id="x1-110003.3"></a>Comparison to K-Nearest Neighbors</h4>
+       <!--l. 245--><p class="noindent" >We now compare AGNet performance to a K-Nearest Neighbors (KNN) algorithm following <span class="cite">[<a 
+href="#XPasquet-Itam2018">20</a>]</span>. We
+       follow the same features and preprocessing as our AGNet implementation, with an ideal K value of
+       <span 
+class="cmmi-10">K </span><span 
+class="cmr-10">= 19</span>. For quasar redshift, we achieve a RMSE = <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">386 </span>and for mass we achieve a RMSE =
+       <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">370</span>. Using AGNet predicted redshift (z*) and <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub> values, KNN achieves RMSE = <span 
+class="cmr-10">0</span><span 
+class="cmmi-10">.</span><span 
+class="cmr-10">398</span>,
+       which is comparable to AGNet performance. The KNN performance suggests that spectral
+       and time series features of limited data cannot be extracted as efficiently by traditional ML
+       methods.
+       </p>
+       <div class="table">
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <!--l. 247--><p class="noindent" ><a 
+ id="x1-110011"></a></p><hr class="float" /><div class="float" 
+>
+                                                                                                                                                                      
+                                                                                                                                                                      
+       <div class="tabular"> <table id="TBL-6" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-6-1g"><col 
+id="TBL-6-1" /></colgroup><colgroup id="TBL-6-2g"><col 
+id="TBL-6-2" /></colgroup><colgroup id="TBL-6-3g"><col 
+id="TBL-6-3" /></colgroup><colgroup id="TBL-6-4g"><col 
+id="TBL-6-4" /></colgroup><colgroup id="TBL-6-5g"><col 
+id="TBL-6-5" /></colgroup><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-1-"><td colspan="3" style="white-space:wrap; text-align:left;" id="TBL-6-1-1"  
+class="td11"></td>                            <div class="multicolumn"  style="white-space:nowrap; text-align:center;">Summary Statistics</div>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-2-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-1"  
+class="td11"><!--l. 252--><p class="noindent" >ML algorithm            </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-2"  
+class="td11"><!--l. 252--><p class="noindent" >Features                     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-3"  
+class="td11"><!--l. 252--><p class="noindent" >Parameters                </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-4"  
+class="td11"><!--l. 252--><p class="noindent" >RMSE   </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-2-5"  
+class="td11"><!--l. 252--><p class="noindent" ><span 
+class="cmmi-10">R</span><sup><span 
+class="cmr-7">2</span></sup>         </p></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-3-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-1"  
+class="td11"><!--l. 254--><p class="noindent" >AGNet                       </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-2"  
+class="td11"><!--l. 254--><p class="noindent" >colors and bands       </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-3"  
+class="td11"><!--l. 254--><p class="noindent" >redshift (z)                </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-4"  
+class="td11"><!--l. 254--><p class="noindent" >0.355     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-3-5"  
+class="td11"><!--l. 254--><p class="noindent" >0.759     </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-4-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-1"  
+class="td11"><!--l. 255--><p class="noindent" >KNN                         </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-2"  
+class="td11"><!--l. 255--><p class="noindent" >colors and bands       </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-3"  
+class="td11"><!--l. 255--><p class="noindent" >redshift (z)                </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-4"  
+class="td11"><!--l. 255--><p class="noindent" >0.386     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-4-5"  
+class="td11"><!--l. 255--><p class="noindent" >0.715     </p></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-5-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-1"  
+class="td11"><!--l. 257--><p class="noindent" >AGNet (w spec-z)     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-2"  
+class="td11"><!--l. 257--><p class="noindent" >colors, <span 
+class="cmmi-10">τ</span>, <span 
+class="cmmi-10">σ</span>, <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>, z    </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-3"  
+class="td11"><!--l. 257--><p class="noindent" >SMBH mass              </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-4"  
+class="td11"><!--l. 257--><p class="noindent" >0.357     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-5-5"  
+class="td11"><!--l. 257--><p class="noindent" >0.425     </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-6-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-1"  
+class="td11"><!--l. 258--><p class="noindent" >KNN (w spec-z)        </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-2"  
+class="td11"><!--l. 258--><p class="noindent" >colors, <span 
+class="cmmi-10">τ</span>, <span 
+class="cmmi-10">σ</span>, <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>, z    </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-3"  
+class="td11"><!--l. 258--><p class="noindent" >SMBH mass              </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-4"  
+class="td11"><!--l. 258--><p class="noindent" >0.370     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-6-5"  
+class="td11"><!--l. 258--><p class="noindent" >0.369     </p></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-7-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-1"  
+class="td11"><!--l. 260--><p class="noindent" >AGNet (w/o spec-z)  </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-2"  
+class="td11"><!--l. 260--><p class="noindent" >colors, <span 
+class="cmmi-10">τ</span>, <span 
+class="cmmi-10">σ</span>, <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>, z*  </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-3"  
+class="td11"><!--l. 260--><p class="noindent" >SMBH mass              </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-4"  
+class="td11"><!--l. 260--><p class="noindent" >0.401     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-7-5"  
+class="td11"><!--l. 260--><p class="noindent" >0.272     </p></td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-8-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-1"  
+class="td11"><!--l. 261--><p class="noindent" >KNN (w/o spec-z)     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-2"  
+class="td11"><!--l. 261--><p class="noindent" >colors, <span 
+class="cmmi-10">τ</span>, <span 
+class="cmmi-10">σ</span>, <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub>, z*  </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-3"  
+class="td11"><!--l. 261--><p class="noindent" >SMBH mass              </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-4"  
+class="td11"><!--l. 261--><p class="noindent" >0.398     </p></td><td  style="white-space:wrap; text-align:left;" id="TBL-6-8-5"  
+class="td11"><!--l. 261--><p class="noindent" >0.283     </p></td>
+</tr><tr 
+class="hline"><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-6-9-"><td  style="white-space:wrap; text-align:left;" id="TBL-6-9-1"  
+class="td11">                </td></tr></table></div>
+       <br /><div class="caption" 
+><span class="id">Table 1: </span><span  
+class="content">Summary Statistics </span></div><!--tex4ht:label?: x1-110011 -->
+                                                                                                                                                                      
+                                                                                                                                                                      
+       </div><hr class="endfloat" />
+       </div>
+       <h3 class="sectionHead"><span class="titlemark">4    </span> <a 
+ id="x1-120004"></a>Discussion and Future work</h3>
+       <!--l. 269--><p class="noindent" >We have shown that with photometric light curves, our AGNet pipeline provides a fast and automatic way to
+       predict SMBH mass and redshift. The neural network is able to approximate a function from the given
+       features to predict the desired parameters. It is able to learn from information provided from quasar light
+       time series without expensive spectroscopic spectra.
+       </p><!--l. 271--><p class="noindent" >To improve our model, we plan on implementing negative log likelihood loss to quantify uncertainties in
+       our network predictions <span class="cite">[<a 
+href="#Xlevasseur2017uncertainties">33</a>]</span>. We will also explore additional time series features for AGNet to learn from
+       outside of <span 
+class="cmmi-10">σ </span>and <span 
+class="cmmi-10">τ </span>using FATS <span class="cite">[<a 
+href="#Xnun2015fats">25</a>]</span>. We will expand our work with larger data sets in future, such as the
+       Dark Energy Survey Supernova Fields <span class="cite">[<a 
+href="#Xkessler2015difference">34</a>]</span> and the Vera Rubin Observatory. More robust and high quality
+       data may improve our results, and may allow us to utilize more advanced CNN architectures and transfer
+       learning techniques.
+       </p><!--l. 277--><p class="noindent" >
+       </p>
+       <h3 class="likesectionHead"><a 
+ id="x1-130004"></a>Broader Impact</h3>
+       <!--l. 279--><p class="noindent" >We will open source our codes along with journal publication. Within the astronomy community, this work
+       has potential for data analysis not only on AGN light curves, but also other transients detected by
+       large-scale multi-band sky surveys (e.g. Vera Rubin Observatory).
+       </p><!--l. 281--><p class="noindent" >For broader impact on the public, we provide tools applicable for data analysis (parameter estimation) on
+       time series data with large gaps (e.g. climate science, biology, medical diagnosis).
+       </p><!--l. 287--><p class="noindent" >
+       </p>
+       <h3 class="likesectionHead"><a 
+ id="x1-140004"></a>Acknowledgments and Disclosure of Funding</h3>
+       <!--l. 287--><p class="noindent" >We thank the anonymous referees for helpful comments. This work utilizes resources supported by the
+       National Science Foundation’s Major Research Instrumentation program, grant No.1725729, as well as the
+       University of Illinois at Urbana-Champaign. We thank Dr. Volodymyr Kindratenko and Dr. Dawei Mu at
+       the National Center for Supercomputing Applications (NCSA) for their assistance with the GPU cluster
+       used in this work and helpful comments. JYYL, SP, and XL acknowledge support from the NCSA
+       fellowship. SP and DP acknowledge support from the NCSA SPIN and NSF REU INCLUSION
+       programs.
+       </p><!--l. 1--><p class="noindent" >
+       </p>
+       <h3 class="likesectionHead"><a 
+ id="x1-150004"></a><span 
+class="ptmr8t-x-x-90">References</span></h3>
+       <!--l. 1--><p class="noindent" >
+           </p><div class="thebibliography">
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[1]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XKormendyHo2013"></a><span 
+class="ptmr8t-x-x-90">John Kormendy and Luis</span><span 
+class="ptmr8t-x-x-90"> C Ho. Coevolution (or not) of supermassive black holes and host galaxies.</span>
+           <span 
+class="ptmri8t-x-x-90">Annual Review of Astronomy and Astrophysics</span><span 
+class="ptmr8t-x-x-90">, 51:511–653, 2013.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[2]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XSchmidt1968"></a><span 
+class="ptmr8t-x-x-90">Maarten Schmidt.   Space distribution and luminosity functions of quasi-stellar radio sources.   </span><span 
+class="ptmri8t-x-x-90">The</span>
+           <span 
+class="ptmri8t-x-x-90">Astrophysical Journal</span><span 
+class="ptmr8t-x-x-90">, 151:393, 1968.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[3]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XRees1984"></a><span 
+class="ptmr8t-x-x-90">Martin</span><span 
+class="ptmr8t-x-x-90"> J  Rees.    Black  hole  models  for  active  galactic  nuclei.    </span><span 
+class="ptmri8t-x-x-90">Annual  review  of  astronomy  and</span>
+           <span 
+class="ptmri8t-x-x-90">astrophysics</span><span 
+class="ptmr8t-x-x-90">, 22(1):471–506, 1984.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[4]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XSoltan1982"></a><span 
+class="ptmr8t-x-x-90">Andrzej  Soltan.      Masses  of  quasars.      </span><span 
+class="ptmri8t-x-x-90">Monthly  Notices  of  the  Royal  Astronomical  Society</span><span 
+class="ptmr8t-x-x-90">,</span>
+           <span 
+class="ptmr8t-x-x-90">200(1):115–122, 1982.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[5]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XBanados2018"></a><span 
+class="ptmr8t-x-x-90">Eduardo  Ba</span><span 
+class="ptmr8t-x-x-90">ñados,  Bram</span><span 
+class="ptmr8t-x-x-90"> P  Venemans,  Chiara  Mazzucchelli,  Emanuele</span><span 
+class="ptmr8t-x-x-90"> P  Farina,  Fabian  Walter,</span>
+           <span 
+class="ptmr8t-x-x-90">Feige   Wang,   Roberto   Decarli,   Daniel   Stern,   Xiaohui   Fan,   Frederick</span><span 
+class="ptmr8t-x-x-90"> B   Davies,   et</span><span 
+class="ptmr8t-x-x-90"> al.        An</span>
+           <span 
+class="ptmr8t-x-x-90">800-million-solar-mass  black  hole  in  a  significantly  neutral  universe  at  a  redshift  of  7.5.    </span><span 
+class="ptmri8t-x-x-90">Nature</span><span 
+class="ptmr8t-x-x-90">,</span>
+           <span 
+class="ptmr8t-x-x-90">553(7689):473–476, 2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[6]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XKing2014"></a><span 
+class="ptmr8t-x-x-90">Anthea</span><span 
+class="ptmr8t-x-x-90"> L King, Tamara</span><span 
+class="ptmr8t-x-x-90"> M Davis, KD</span><span 
+class="ptmr8t-x-x-90"> Denney, Marianne Vestergaard, and D</span><span 
+class="ptmr8t-x-x-90"> Watson. High-redshift</span>
+           <span 
+class="ptmr8t-x-x-90">standard candles: predicted cosmological constraints. </span><span 
+class="ptmri8t-x-x-90">Monthly Notices of the Royal Astronomical Society</span><span 
+class="ptmr8t-x-x-90">,</span>
+           <span 
+class="ptmr8t-x-x-90">441(4):3454–3476, 2014.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[7]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XDultzin2020"></a><span 
+class="ptmr8t-x-x-90">Paola  Marziani,  Deborah  Dultzin,  Mauro  D’Onofrio,  JA</span><span 
+class="ptmr8t-x-x-90"> De</span><span 
+class="ptmr8t-x-x-90"> Diego</span><span 
+class="ptmr8t-x-x-90"> Onsurbe,  Alenka  Negrete,</span>
+           <span 
+class="ptmr8t-x-x-90">Ascensi</span><span 
+class="ptmr8t-x-x-90">ón Del</span><span 
+class="ptmr8t-x-x-90"> Olmo, Mary</span><span 
+class="ptmr8t-x-x-90"> Loli Mart</span><span 
+class="ptmr8t-x-x-90">ínez-Aldama, Edi Bon, Natasa Bon, and Giovanna</span><span 
+class="ptmr8t-x-x-90"> Maria Stirpe.</span>
+           <span 
+class="ptmr8t-x-x-90">Extreme quasars as distance indicators in cosmology.  </span><span 
+class="ptmri8t-x-x-90">Frontiers in Astronomy and Space Sciences</span><span 
+class="ptmr8t-x-x-90">, 6:80,</span>
+           <span 
+class="ptmr8t-x-x-90">2019.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[8]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XShen2013"></a><span 
+class="ptmr8t-x-x-90">Yue Shen. The mass of quasars. </span><span 
+class="ptmri8t-x-x-90">arXiv preprint arXiv:1302.2643</span><span 
+class="ptmr8t-x-x-90">, 2013.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+         <span 
+class="ptmr8t-x-x-90">[9]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xrakshit2020spectral"></a><span 
+class="ptmr8t-x-x-90">Suvendu Rakshit, CS</span><span 
+class="ptmr8t-x-x-90"> Stalin, and Jari Kotilainen. Spectral properties of quasars from sloan digital sky</span>
+           <span 
+class="ptmr8t-x-x-90">survey data release 14: The catalog. </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal Supplement Series</span><span 
+class="ptmr8t-x-x-90">, 249(1):17, 2020.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[10]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XIvezic2019"></a><span 
+class="ptmr8t-x-x-90">Željko Ivezi</span><span 
+class="ptmr8t-x-x-90">ć, Steven</span><span 
+class="ptmr8t-x-x-90"> M Kahn, J</span><span 
+class="ptmr8t-x-x-90"> Anthony Tyson, Bob Abel, Emily Acosta, Robyn Allsman, David</span>
+           <span 
+class="ptmr8t-x-x-90">Alonso, Yusra AlSayyad, Scott</span><span 
+class="ptmr8t-x-x-90"> F Anderson, John Andrew, et</span><span 
+class="ptmr8t-x-x-90"> al.  Lsst: from science drivers to reference</span>
+           <span 
+class="ptmr8t-x-x-90">design and anticipated data products. </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal</span><span 
+class="ptmr8t-x-x-90">, 873(2):111, 2019.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[11]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XCabrera-Vives2017"></a><span 
+class="ptmr8t-x-x-90">Guillermo  Cabrera-Vives,  Ignacio  Reyes,  Francisco  F</span><span 
+class="ptmr8t-x-x-90">örster,  Pablo</span><span 
+class="ptmr8t-x-x-90"> A  Est</span><span 
+class="ptmr8t-x-x-90">évez,  and  Juan-Carlos</span>
+           <span 
+class="ptmr8t-x-x-90">Maureira.   Deep-hits:  Rotation  invariant  convolutional  neural  network  for  transient  detection.   </span><span 
+class="ptmri8t-x-x-90">arXiv</span>
+           <span 
+class="ptmri8t-x-x-90">preprint arXiv:1701.00458</span><span 
+class="ptmr8t-x-x-90">, 2017.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[12]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XCharnock2017"></a><span 
+class="ptmr8t-x-x-90">Tom Charnock and Adam Moss.  Deep recurrent neural networks for supernovae classification.  </span><span 
+class="ptmri8t-x-x-90">The</span>
+           <span 
+class="ptmri8t-x-x-90">Astrophysical Journal Letters</span><span 
+class="ptmr8t-x-x-90">, 837(2):L28, 2017.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[13]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XKim2017"></a><span 
+class="ptmr8t-x-x-90">Edward</span><span 
+class="ptmr8t-x-x-90"> J  Kim  and  Robert</span><span 
+class="ptmr8t-x-x-90"> J  Brunner.   Star-galaxy  classification  using  deep  convolutional  neural</span>
+           <span 
+class="ptmr8t-x-x-90">networks. </span><span 
+class="ptmri8t-x-x-90">Monthly Notices of the Royal Astronomical Society</span><span 
+class="ptmr8t-x-x-90">, page stw2672, 2016.</span>
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[14]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XGeorge2018a"></a><span 
+class="ptmr8t-x-x-90">Daniel  George  and  EA</span><span 
+class="ptmr8t-x-x-90"> Huerta.     Deep  learning  for  real-time  gravitational  wave  detection  and</span>
+           <span 
+class="ptmr8t-x-x-90">parameter estimation: Results with advanced ligo data. </span><span 
+class="ptmri8t-x-x-90">Physics Letters B</span><span 
+class="ptmr8t-x-x-90">, 778:64–70, 2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[15]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XHuang2018"></a><span 
+class="ptmr8t-x-x-90">Xin Huang, Huaning Wang, Long Xu, Jinfu Liu, Rong Li, and Xinghua Dai. Deep learning based solar</span>
+           <span 
+class="ptmr8t-x-x-90">flare forecasting model. i. results for line-of-sight magnetograms.  </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal</span><span 
+class="ptmr8t-x-x-90">, 856(1):7,</span>
+           <span 
+class="ptmr8t-x-x-90">2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[16]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XLanusse2018"></a><span 
+class="ptmr8t-x-x-90">Fran</span><span 
+class="ptmr8t-x-x-90">çois Lanusse, Quanbin Ma, Nan Li, Thomas</span><span 
+class="ptmr8t-x-x-90"> E Collett, Chun-Liang Li, Siamak Ravanbakhsh,</span>
+           <span 
+class="ptmr8t-x-x-90">Rachel   Mandelbaum,   and   Barnab</span><span 
+class="ptmr8t-x-x-90">ás   P</span><span 
+class="ptmr8t-x-x-90">óczos.        Cmu   deeplens:   deep   learning   for   automatic</span>
+           <span 
+class="ptmr8t-x-x-90">image-based  galaxy–galaxy  strong  lens  finding.   </span><span 
+class="ptmri8t-x-x-90">Monthly  Notices  of  the  Royal  Astronomical  Society</span><span 
+class="ptmr8t-x-x-90">,</span>
+           <span 
+class="ptmr8t-x-x-90">473(3):3895–3906, 2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[17]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XRibli2018"></a><span 
+class="ptmr8t-x-x-90">Dezs</span><span 
+class="ptmr8t-x-x-90">ő Ribli, B</span><span 
+class="ptmr8t-x-x-90">álint</span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90">Ármin Pataki, and Istv</span><span 
+class="ptmr8t-x-x-90">án Csabai. An improved cosmological parameter inference</span>
+           <span 
+class="ptmr8t-x-x-90">scheme motivated by deep learning. </span><span 
+class="ptmri8t-x-x-90">Nature Astronomy</span><span 
+class="ptmr8t-x-x-90">, 3(1):93–98, 2019.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[18]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XBurke2019"></a><span 
+class="ptmr8t-x-x-90">Colin</span><span 
+class="ptmr8t-x-x-90"> J Burke, Patrick</span><span 
+class="ptmr8t-x-x-90"> D Aleo, Yu-Ching Chen, Xin Liu, John</span><span 
+class="ptmr8t-x-x-90"> R Peterson, Glenn</span><span 
+class="ptmr8t-x-x-90"> H Sembroski, and</span>
+           <span 
+class="ptmr8t-x-x-90">Joshua Yao-Yu Lin.   Deblending and classifying astronomical sources with mask r-cnn deep learning.</span>
+           <span 
+class="ptmri8t-x-x-90">Monthly Notices of the Royal Astronomical Society</span><span 
+class="ptmr8t-x-x-90">, 490(3):3952–3965, 2019.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[19]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xyao2020feature"></a><span 
+class="ptmr8t-x-x-90">Joshua Yao-Yu</span><span 
+class="ptmr8t-x-x-90"> Lin, George</span><span 
+class="ptmr8t-x-x-90"> N Wong, Ben</span><span 
+class="ptmr8t-x-x-90"> S Prather, and Charles</span><span 
+class="ptmr8t-x-x-90"> F Gammie. Feature extraction on</span>
+           <span 
+class="ptmr8t-x-x-90">synthetic black hole images. </span><span 
+class="ptmri8t-x-x-90">arXiv e-prints</span><span 
+class="ptmr8t-x-x-90">, pages arXiv–2007, 2020.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[20]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XPasquet-Itam2018"></a><span 
+class="ptmr8t-x-x-90">Johanna Pasquet-Itam and J</span><span 
+class="ptmr8t-x-x-90">ér</span><span 
+class="ptmr8t-x-x-90">ôme Pasquet.   Deep learning approach for classifying, detecting and</span>
+           <span 
+class="ptmr8t-x-x-90">predicting  photometric  redshifts  of  quasars  in  the  sloan  digital  sky  survey  stripe  82.    </span><span 
+class="ptmri8t-x-x-90">Astronomy  &#x0026;</span>
+           <span 
+class="ptmri8t-x-x-90">Astrophysics</span><span 
+class="ptmr8t-x-x-90">, 611:A97, 2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[21]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xyork2000sloan"></a><span 
+class="ptmr8t-x-x-90">Donald</span><span 
+class="ptmr8t-x-x-90"> G York, J</span><span 
+class="ptmr8t-x-x-90"> Adelman, John</span><span 
+class="ptmr8t-x-x-90"> E Anderson</span><span 
+class="ptmr8t-x-x-90"> Jr, Scott</span><span 
+class="ptmr8t-x-x-90"> F Anderson, James Annis, Neta</span><span 
+class="ptmr8t-x-x-90"> A Bahcall,</span>
+           <span 
+class="ptmr8t-x-x-90">JA</span><span 
+class="ptmr8t-x-x-90"> Bakken,  Robert  Barkhouser,  Steven  Bastian,  Eileen  Berman,  et</span><span 
+class="ptmr8t-x-x-90"> al.   The  sloan  digital  sky  survey:</span>
+           <span 
+class="ptmr8t-x-x-90">Technical summary. </span><span 
+class="ptmri8t-x-x-90">The Astronomical Journal</span><span 
+class="ptmr8t-x-x-90">, 120(3):1579, 2000.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[22]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xtachibana2020deep"></a><span 
+class="ptmr8t-x-x-90">Yutaro   Tachibana,   Matthew</span><span 
+class="ptmr8t-x-x-90"> J   Graham,   Nobuyuki   Kawai,   SG</span><span 
+class="ptmr8t-x-x-90"> Djorgovski,   Andrew</span><span 
+class="ptmr8t-x-x-90"> J   Drake,</span>
+           <span 
+class="ptmr8t-x-x-90">Ashish</span><span 
+class="ptmr8t-x-x-90"> A  Mahabal,  and  Daniel  Stern.      Deep  modeling  of  quasar  variability.      </span><span 
+class="ptmri8t-x-x-90">arXiv  preprint</span>
+           <span 
+class="ptmri8t-x-x-90">arXiv:2003.01241</span><span 
+class="ptmr8t-x-x-90">, 2020.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[23]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xkelly2009variations"></a><span 
+class="ptmr8t-x-x-90">Brandon</span><span 
+class="ptmr8t-x-x-90"> C Kelly, Jill Bechtold, and Aneta Siemiginowska.  Are the variations in quasar optical flux</span>
+           <span 
+class="ptmr8t-x-x-90">driven by thermal fluctuations? </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal</span><span 
+class="ptmr8t-x-x-90">, 698(1):895, 2009.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[24]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xmacleod2010modeling"></a><span 
+class="ptmr8t-x-x-90">Ch</span><span 
+class="ptmr8t-x-x-90"> L MacLeod, </span><span 
+class="ptmr8t-x-x-90">Ž</span><span 
+class="ptmr8t-x-x-90"> Ivezi</span><span 
+class="ptmr8t-x-x-90">ć, CS</span><span 
+class="ptmr8t-x-x-90"> Kochanek, S</span><span 
+class="ptmr8t-x-x-90"> Kozłowski, B</span><span 
+class="ptmr8t-x-x-90"> Kelly, E</span><span 
+class="ptmr8t-x-x-90"> Bullock, A</span><span 
+class="ptmr8t-x-x-90"> Kimball, B</span><span 
+class="ptmr8t-x-x-90"> Sesar,</span>
+           <span 
+class="ptmr8t-x-x-90">D</span><span 
+class="ptmr8t-x-x-90"> Westman, K</span><span 
+class="ptmr8t-x-x-90"> Brooks, et</span><span 
+class="ptmr8t-x-x-90"> al. Modeling the time variability of sdss stripe 82 quasars as a damped random</span>
+           <span 
+class="ptmr8t-x-x-90">walk. </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal</span><span 
+class="ptmr8t-x-x-90">, 721(2):1014, 2010.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[25]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xnun2015fats"></a><span 
+class="ptmr8t-x-x-90">Isadora Nun, Pavlos Protopapas, Brandon Sim, Ming Zhu, Rahul Dave, Nicolas Castro, and Karim</span>
+           <span 
+class="ptmr8t-x-x-90">Pichara. Fats: Feature analysis for time series. </span><span 
+class="ptmri8t-x-x-90">arXiv preprint arXiv:1506.00010</span><span 
+class="ptmr8t-x-x-90">, 2015.</span>
+                                                                                                                                                                                        
+                                                                                                                                                                                        
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[26]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XShen2011"></a><span 
+class="ptmr8t-x-x-90">Yue Shen, Gordon</span><span 
+class="ptmr8t-x-x-90"> T Richards, Michael</span><span 
+class="ptmr8t-x-x-90"> A Strauss, Patrick</span><span 
+class="ptmr8t-x-x-90"> B Hall, Donald</span><span 
+class="ptmr8t-x-x-90"> P Schneider, Stephanie</span>
+           <span 
+class="ptmr8t-x-x-90">Snedden, Dmitry Bizyaev, Howard Brewington, Viktor Malanushenko, Elena Malanushenko, et</span><span 
+class="ptmr8t-x-x-90"> al.   A</span>
+           <span 
+class="ptmr8t-x-x-90">catalog  of  quasar  properties  from  sloan  digital  sky  survey  data  release  7.   </span><span 
+class="ptmri8t-x-x-90">The  Astrophysical  Journal</span>
+           <span 
+class="ptmri8t-x-x-90">Supplement Series</span><span 
+class="ptmr8t-x-x-90">, 194(2):45, 2011.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[27]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xagarap2018relu"></a><span 
+class="ptmr8t-x-x-90">Abien Fred</span><span 
+class="ptmr8t-x-x-90"> M. Agarap. Deep learning using rectified linear units (relu). </span><span 
+class="ptmri8t-x-x-90">arXiv:1803.08375</span><span 
+class="ptmr8t-x-x-90">, 2018.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[28]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xkingma2014adam"></a><span 
+class="ptmr8t-x-x-90">Diederik</span><span 
+class="ptmr8t-x-x-90"> P Kingma and Jimmy Ba.   Adam: A method for stochastic optimization.   </span><span 
+class="ptmri8t-x-x-90">arXiv preprint</span>
+           <span 
+class="ptmri8t-x-x-90">arXiv:1412.6980</span><span 
+class="ptmr8t-x-x-90">, 2014.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[29]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xloshchilov2017decoupled"></a><span 
+class="ptmr8t-x-x-90">Ilya  Loshchilov  and  Frank  Hutter.     Decoupled  weight  decay  regularization.     </span><span 
+class="ptmri8t-x-x-90">arXiv  preprint</span>
+           <span 
+class="ptmri8t-x-x-90">arXiv:1711.05101</span><span 
+class="ptmr8t-x-x-90">, 2017.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[30]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xhe2016deep"></a><span 
+class="ptmr8t-x-x-90">Kaiming  He,  Xiangyu  Zhang,  Shaoqing  Ren,  and  Jian  Sun.    Deep  residual  learning  for  image</span>
+           <span 
+class="ptmr8t-x-x-90">recognition.  In </span><span 
+class="ptmri8t-x-x-90">Proceedings of the IEEE conference on computer vision and pattern recognition</span><span 
+class="ptmr8t-x-x-90">, pages</span>
+           <span 
+class="ptmr8t-x-x-90">770–778, 2016.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[31]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xtan2019efficientnet"></a><span 
+class="ptmr8t-x-x-90">Mingxing  Tan  and  Quoc</span><span 
+class="ptmr8t-x-x-90"> V  Le.    Efficientnet:  Rethinking  model  scaling  for  convolutional  neural</span>
+           <span 
+class="ptmr8t-x-x-90">networks. </span><span 
+class="ptmri8t-x-x-90">arXiv preprint arXiv:1905.11946</span><span 
+class="ptmr8t-x-x-90">, 2019.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[32]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="XRichards_2001"></a><span 
+class="ptmr8t-x-x-90">Gordon</span><span 
+class="ptmr8t-x-x-90"> T. Richards, Michael</span><span 
+class="ptmr8t-x-x-90"> A. Weinstein, Donald</span><span 
+class="ptmr8t-x-x-90"> P. Schneider, Xiaohui Fan, Michael</span><span 
+class="ptmr8t-x-x-90"> A. Strauss,</span>
+           <span 
+class="ptmr8t-x-x-90">Daniel</span><span 
+class="ptmr8t-x-x-90"> E. Vanden</span><span 
+class="ptmr8t-x-x-90"> Berk, James Annis, Scott Burles, Emily</span><span 
+class="ptmr8t-x-x-90"> M. Laubacher, Donald</span><span 
+class="ptmr8t-x-x-90"> G. York, and et</span><span 
+class="ptmr8t-x-x-90"> al.</span>
+           <span 
+class="ptmr8t-x-x-90">Photometric redshifts of quasars. </span><span 
+class="ptmri8t-x-x-90">The Astronomical Journal</span><span 
+class="ptmr8t-x-x-90">, 122(3):1151–1162, Sep 2001.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[33]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xlevasseur2017uncertainties"></a><span 
+class="ptmr8t-x-x-90">Laurence</span><span 
+class="ptmr8t-x-x-90"> Perreault Levasseur, Yashar</span><span 
+class="ptmr8t-x-x-90"> D Hezaveh, and Risa</span><span 
+class="ptmr8t-x-x-90"> H Wechsler. Uncertainties in parameters</span>
+           <span 
+class="ptmr8t-x-x-90">estimated with neural networks: Application to strong gravitational lensing.  </span><span 
+class="ptmri8t-x-x-90">The Astrophysical Journal</span>
+           <span 
+class="ptmri8t-x-x-90">Letters</span><span 
+class="ptmr8t-x-x-90">, 850(1):L7, 2017.</span>
+           </p>
+           <p class="bibitem" ><span class="biblabel">
+        <span 
+class="ptmr8t-x-x-90">[34]</span><span class="bibsp"><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span><span 
+class="ptmr8t-x-x-90"> </span></span></span><a 
+ id="Xkessler2015difference"></a><span 
+class="ptmr8t-x-x-90">R</span><span 
+class="ptmr8t-x-x-90"> Kessler,   J</span><span 
+class="ptmr8t-x-x-90"> Marriner,   M</span><span 
+class="ptmr8t-x-x-90"> Childress,   R</span><span 
+class="ptmr8t-x-x-90"> Covarrubias,   CB</span><span 
+class="ptmr8t-x-x-90"> D’Andrea,   DA</span><span 
+class="ptmr8t-x-x-90"> Finley,   J</span><span 
+class="ptmr8t-x-x-90"> Fischer,</span>
+           <span 
+class="ptmr8t-x-x-90">Ryan</span><span 
+class="ptmr8t-x-x-90"> Joseph Foley, D</span><span 
+class="ptmr8t-x-x-90"> Goldstein, RR</span><span 
+class="ptmr8t-x-x-90"> Gupta, et</span><span 
+class="ptmr8t-x-x-90"> al.   The difference imaging pipeline for the transient</span>
+           <span 
+class="ptmr8t-x-x-90">search in the dark energy survey. </span><span 
+class="ptmri8t-x-x-90">The Astronomical Journal</span><span 
+class="ptmr8t-x-x-90">, 150(6):172, 2015.</span>
+       </p>
+           </div>
+        
+</body></html> 
+
+                                                                                                                                                                                        
+
+
