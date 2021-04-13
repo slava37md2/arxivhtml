@@ -1,0 +1,47 @@
+@charset "UTF8";
+/* SkyScript.ru 2009 windows-1251  */
+
+body {
+margin:0;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:14px;
+color:#666666;
+}
+
+td {
+font-size:12px;
+}
+h1 {
+color:#ec008c;
+font-size:14px;
+margin-bottom:10px;
+margin-top:10px;
+text-align:center;
+}
+
+a {
+text-decoration:none;
+color: #ec008c;
+}
+input {
+margin-top:10px;
+border:1px solid #f199bf;
+color:#666666;
+background-color:#fef3f7;
+}
+
+
+
+form {
+margin:0;
+padding:0;
+
+}
+
+
+.bginp2 {
+	BACKGROUND-COLOR: #fef3f7;
+}
+
+
+
