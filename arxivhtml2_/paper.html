@@ -1,0 +1,1260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Increasing negotiation performance at the edge of the network</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="paper.tex"> 
+<link rel="stylesheet" type="text/css" href="paper.css"> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+<a 
+ id="x1-2r1"></a>
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">Increasing negotiation performance at the edge
+of the network</h2>
+<div class="author" >Sam Vente<span 
+class="cmr-7">1</span><span 
+class="cmr-7">[0000</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0002</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">5485</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">6571]</span>, Angelika Kimmig<span 
+class="cmr-7">1</span><span 
+class="cmr-7">[0000</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0002</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">6742</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">4057]</span>, Alun
+Preece<span 
+class="cmr-7">1</span><span 
+class="cmr-7">[0000</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0003</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0349</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">9057]</span>, and&#x00A0;Federico Cerutti<span 
+class="cmr-7">2</span>&#x00A0;<span 
+class="cmr-7">1</span><span 
+class="cmr-7">[0000</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0003</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0755</span><span 
+class="cmsy-7">-</span><span 
+class="cmr-7">0358]</span></div>
+<span 
+class="cmr-6">1</span>
+  <div class="institute"><span 
+class="cmr-9">Cardiff University, Cardiff, CF10 3AT, UK</span>
+<span class="email"><span 
+class="cmsy-9">{</span><span 
+class="cmtt-9">VenteDA,KimmigA,PreeceAD,CeruttiF</span><span 
+class="cmsy-9">}</span><span 
+class="cmtt-9">@cardiff.ac.uk</span></span>
+<span 
+class="cmr-6">2</span>
+  <span 
+class="cmr-9">Department of Information Engineering, University of Brescia, Italy</span>
+<span class="email"><span 
+class="cmtt-9">federico.cerutti@unibs.it</span></span></div>
+<div class="thanks" ><br /><a 
+ id="tk-1"></a><span class="thank-mark"><span 
+class="cmmi-10">&#x22C6;</span></span>This research was sponsored by the U.S. Army Research Laboratory and the U.K.
+Ministry of Defence under Agreement Number W911NF-16-3-0001. The views and
+conclusions contained in this document are those of the authors and should not be
+interpreted as representing the official policies, either expressed or implied, of the U.S.
+Army Research Laboratory, the U.S. Government, the U.K. Ministry of Defence or
+the U.K. Government. The U.S. and U.K. Governments are authorized to reproduce
+and distribute reprints for Government purposes notwithstanding any copyright
+notation hereon. </div><a 
+ id="Q1-1-1"></a><a 
+ id="Q1-1-2"></a></div>
+   <div 
+class="abstract" 
+>
+     <span 
+class="cmbx-9">Abstract</span> <span 
+class="cmr-9">Automated  negotiation  has  been  used  in  a  variety  of</span>
+     <span 
+class="cmr-9">distributed  settings,  such  as  privacy  in  the  Internet  of  Things  (IoT)</span>
+     <span 
+class="cmr-9">devices  and  power  distribution  in  Smart  Grids.  The  most  common</span>
+     <span 
+class="cmr-9">protocol under which these agents negotiate is the Alternating Offers</span>
+     <span 
+class="cmr-9">Protocol  (AOP).  Under  this  protocol,  agents  cannot  express  any</span>
+     <span 
+class="cmr-9">additional information to each other besides a counter offer. This can</span>
+     <span 
+class="cmr-9">lead to unnecessarily long negotiations when, for example, negotiations</span>
+     <span 
+class="cmr-9">are impossible, risking to waste bandwidth that is a precious resource at</span>
+     <span 
+class="cmr-9">the edge of the network. While alternative protocols exist which alleviate</span>
+     <span 
+class="cmr-9">this problem, these solutions are too complex for low power devices,</span>
+     <span 
+class="cmr-9">such as IoT sensors operating at the edge of the network. To improve</span>
+     <span 
+class="cmr-9">this bottleneck, we introduce an extension to AOP called Alternating</span>
+     <span 
+class="cmr-9">Constrained Offers Protocol (ACOP), in which agents can also express</span>
+     <span 
+class="cmr-9">constraints to each other. This allows agents to both search the possibility</span>
+     <span 
+class="cmr-9">space more efficiently and recognise impossible situations sooner. We</span>
+     <span 
+class="cmr-9">empirically show that agents using ACOP can significantly reduce the</span>
+     <span 
+class="cmr-9">number of messages a negotiation takes, independently of the strategy</span>
+     <span 
+class="cmr-9">agents choose. In particular, we show our method significantly reduces</span>
+     <span 
+class="cmr-9">the number of messages when an agreement is not possible. Furthermore,</span>
+     <span 
+class="cmr-9">when an agreement is possible it reaches this agreement sooner with no</span>
+     <span 
+class="cmr-9">negative effect on the utility.</span>
+                                                                  
+
+                                                                  
+</div>
+<!--l. 91--><p class="noindent" ><span 
+class="cmbx-10">Keywords: </span>Automated negotiation<span 
+class="cmsy-10">&#x22C5; </span>Multi-agent systems<span 
+class="cmsy-10">&#x22C5; </span>Constraints
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Introduction</h3>
+<!--l. 94--><p class="noindent" >Autonomous agents, in particular those at the edge of the network&#8212;near to the
+source of the data like single or cooperative sensors&#8212;often need to coordinate actions
+to achieve a shared goal: for instance, they might need to negotiate either access to
+local data to learn a shared model; or access to a shared resource like bandwidth; or
+joint actions for complex activities such as patrolling an area against wildfires (cf.
+Section <a 
+href="#x1-20002">2<!--tex4ht:ref: ref:context --></a>).
+<!--l. 97--><p class="indent" >   Automated negotiation can provide a solution, by allowing agents to reach a
+mutual consensus on what should and what should not be shared. However, the
+standard method of negotiation under the Alternating Offers Protocol (AOP, Section
+<a 
+href="#x1-30003">3<!--tex4ht:ref: sec:aop --></a>) <span class="cite">[<a 
+href="#XAydogan2017">1</a>]</span> can be resource intensive and in particular bandwidth intensive due to the
+number of messages that need to be exchanged before an outcome can be determined.
+This might be particularly wasteful when considering autonomous agents at the edge
+of the network, which have limited bandwidth resources. At the same time, because
+such agents are often deployed on low-power devices, they cannot be equipped with
+extremely complex reasoning capabilities able to learn and predict other agents&#8217;
+behaviour.
+<!--l. 101--><p class="indent" >   In Section <a 
+href="#x1-40004">4<!--tex4ht:ref: sec:acop --></a> we present a novel extension of AOP called Alternating Constrained
+Offers Protocol (ACOP), that provides a suitable trade-off between reasoning
+capabilities and bandwidth usage, allowing agents to express constraints on any
+possible solution along with the proposals they generate. This allows agents to search
+more effectively for proposals that have a higher probability of being accepted by
+the adversary. To measure the impact of this on the length and outcomes
+of negotiations, we perform empirical analysis on a dataset of simulated
+negotiations (Section <a 
+href="#x1-50005">5<!--tex4ht:ref: sec:methodology --></a>). To summarise, in this work we will address the following
+questions:
+   <ol  class="enumerate1" >
+   <li 
+  class="enumerate" id="x1-1001x1">Do  negotiations  operating  under  ACOP  exchange  fewer  messages  than
+   negotiations operating under AOP in similar scenarios?
+   </li>
+   <li 
+  class="enumerate" id="x1-1002x1">Does adopting ACOP negatively impact the outcome of negotiations when
+   compared to negotiations using AOP?</li></ol>
+<!--l. 107--><p class="indent" >   Results summarised in Section <a 
+href="#x1-80006">6<!--tex4ht:ref: sec:results --></a> provide evidence that negotiations operating
+under ACOP require substantially fewer messages than negotiations operating under
+AOP, without negatively affecting the utility of the outcome.
+<!--l. 110--><p class="noindent" >
+                                                                  
+
+                                                                  
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-20002"></a>Context and Motivating Examples</h3>
+<!--l. 113--><p class="noindent" >Automated negotiation <span class="cite">[<a 
+href="#Xfatima2014principles">5</a>]</span> is a wide field: while our focus is much narrower, it
+encompasses a substantial number of application domains such as but not limited to,
+resource allocation, traffic flow direction, e-commerce, and directing Unmanned
+Vehicles (UxVs) <span class="cite">[<a 
+href="#XyassineDoubleAuctionMechanisms2019">20</a>,&#x00A0;<a 
+href="#XlamparterAgentbasedMarketPlatform2010">13</a>,&#x00A0;<a 
+href="#XZhang2010">21</a>]</span>. As mentioned before, the most commonly used protocol
+for automated negotiation, AOP, can require large amounts of messages to be
+communicated before an outcome can be determined. While more sophisticated
+methods that alleviate communication bottlenecks by using, for example, fully-fledged
+constraint satisfaction solvers <span class="cite">[<a 
+href="#XgaciarzConstraintBasedNegotiationModel2015">6</a>]</span> exist, these can include very complex reasoning that
+is not appropriate for agents deployed on low-power devices that operate at the edge
+of a network. Additionally, many of these solutions require a neutral third party to
+act as a mediator, which is not always possible in distributed or adversarial
+settings. Below we will explore three examples to illustrate some of these
+applications.
+<!--l. 115--><p class="indent" >   Firstly, autonomous agents can share the burden of learning a model. Federated
+Learning is a machine learning setting where the goal is to train a high-quality model
+with training data distributed over a large number of agents, each possibly with
+unreliable and relatively slow network connections <span class="cite">[<a 
+href="#X45648">12</a>]</span> and with constraints such as
+limited battery power. For instance, in <span class="cite">[<a 
+href="#XXu:2019:EFL:3321408.3323080">17</a>]</span> the authors introduce an incentive
+mechanism using auction-like strategies to negotiate with bidding in a format similar
+to <span class="cite">[<a 
+href="#X8462804">18</a>]</span>.
+<!--l. 118--><p class="indent" >   A second domain concerns the negotiation of wireless spectrum allocation <span class="cite">[<a 
+href="#X8462804">18</a>,&#x00A0;<a 
+href="#XdelaHoz2015">9</a>]</span>.
+For instance, due to the low cost of IP-based cameras, wireless surveillance sensor
+networks are now able to monitor large areas. These networks thus require frequency
+channels to be assigned in a clever way: to this end, in <span class="cite">[<a 
+href="#XdelaHoz2015">9</a>]</span> the authors propose to use
+a text mediation protocol <span class="cite">[<a 
+href="#Xklein2003negotiating">11</a>]</span>.
+<!--l. 121--><p class="indent" >   Consider now our third case, that involves a fully distributed and autonomous
+surveillance system such as using Unmanned Aerial Vehicles (UAVs) to patrol an area
+at high risk of wildfires. Each UAV is fully autonomous and equipped with processing
+capability for analysing their sensor streams and detect early signs of wildfire. The
+uplink to the command control centre is via a slow and unreliable satellite
+connection. However, each UAV is aware of the existence of other UAVs via
+low-bandwidth wireless connections. Each UAV has access to commercial-grade
+GPS. All UAVs are programmed to jointly cover a given area, and have
+access to high-quality maps of the area which includes detailed level curves.
+For simplicity, let us assume that the area is divided into sectors, and each
+UAV announces the sector where it is, and the sector where it intends to
+proceed.
+<!--l. 123--><p class="indent" >   Each UAV begins its mission randomly choosing a direction, and hence the next
+sector it will visit. Its main goal is to preserve its own integrity&#8212;after all it is worth
+several hundreds thousands dollars&#8212;while collaborating towards the achievement of
+the shared goal. It is therefore allowed to return to base, even if this will entail that
+the shared goal will not be achieved. Examples of this include, when its battery cell
+level is too low, when adverse weather conditions affect the efficiency of the
+UAV rotors, or when it has been damaged by in-flight collision or some other
+                                                                  
+
+                                                                  
+unpredictable situation. In the case two UAVs announce that they are moving
+towards the same sector, a negotiation between them needs to take place in
+order to achieve coverage of the sector, while avoiding unnecessary report
+duplication.
+<!--l. 125--><p class="indent" >   Let us suppose UAV1 receives an update that UAV2 can visit sector Sierra, the
+same sector it was also aiming at. It can then send a negotiation offer to UAV2 asking
+to be responsible for Sierra. UAV2 most likely will at first reply that it should take
+care of Sierra, while UAV1 can take care of the nearby Tango: after all, it
+announced it first, it is already en route, and it needs to protect its own
+integrity. Let us suppose that UAV1 knows that with its current power level
+and/or performance of its 18 rotors, it cannot visit sector Tango as it would
+require a substantial lifting. It would then be useful for it to communicate such
+a constraint, so to shorten the negotiation phase and proceed towards an
+agreement (or a certification of a disagreement) in a short time frame. Indeed,
+knowing of UAV1&#8217;s constraint, UAV2 can accept to visit Tango, or maybe
+not, due to other constraints. In the latter case, UAV1 can then quickly
+proceed to search for other sectors to visit, or, alternatively, to return to
+base.
+<!--l. 127--><p class="indent" >   This last example illustrates potential uses of being able to communicate
+constraints to other agents. In the next section we will set up the necessary theory to
+discuss our proposed solution.
+<!--l. 130--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-30003"></a>Background in Alternating Offers Protocol</h3>
+<!--l. 132--><p class="noindent" >Firstly we will give a brief overview of the basic negotiation theory used in this work.
+Here all negotiations are assumed to be <span 
+class="cmti-10">bilateral</span>, meaning between only two
+agents, referred to as <span 
+class="cmmi-10">A </span>and <span 
+class="cmmi-10">B </span>respectively. The <span 
+class="cmti-10">negotiation space</span>, which
+is denoted <span 
+class="cmmi-10">&#x03A9;</span>, represents the space of allowable proposals. This consists of
+the product of several sets called <span 
+class="cmti-10">issues</span>, each containing a finite number of
+elements called <span 
+class="cmti-10">values</span>. So, to reiterate, when we write <span 
+class="cmmi-10">&#x03A9; </span>= <span 
+class="cmex-10">&#x220F;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=0</span></sub><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">&#x039B;</span><sub><span 
+class="cmmi-7">i</span></sub> with
+<span 
+class="cmsy-10">|</span><span 
+class="cmmi-10">&#x039B;</span><sub><span 
+class="cmmi-7">i</span></sub><span 
+class="cmsy-10">| </span>= <span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub> that means that the negotiation consists of <span 
+class="cmmi-10">N </span>issues consisting of
+<span 
+class="cmmi-10">M</span><sub><span 
+class="cmmi-7">i</span></sub> values. In the case that <span 
+class="cmsy-10">&#x2200;</span><span 
+class="cmmi-10">i,j </span><span 
+class="cmsy-10">&#x2208;{</span>1<span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,N</span><span 
+class="cmsy-10">} </span>: <span 
+class="cmmi-10">&#x039B;</span><sub><span 
+class="cmmi-7">i</span></sub> = <span 
+class="cmmi-10">&#x039B;</span><sub><span 
+class="cmmi-7">j</span></sub> we may also write
+<span 
+class="cmmi-10">&#x03A9; </span>= <span 
+class="cmmi-10">&#x039B;</span><sup><span 
+class="cmmi-7">N</span></sup>. Each agent is also assumed to have a <span 
+class="cmti-10">utility function </span><span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">A</span></sub><span 
+class="cmmi-10">,u</span><sub><span 
+class="cmmi-7">B</span></sub> : <span 
+class="cmmi-10">&#x03A9; </span><span 
+class="cmsy-10">&#x2192; </span><span 
+class="msbm-10">&#x211D;</span>
+which each induce a total preorder <span 
+class="cmsy-10">&#x227D;</span><sub><span 
+class="cmmi-7">A</span></sub> and <span 
+class="cmsy-10">&#x227D;</span><sub><span 
+class="cmmi-7">B</span></sub> on <span 
+class="cmmi-10">&#x03A9; </span>via the following
+relation
+   <center class="math-display" >
+<img 
+src="paper0x.png" alt="&#x2200;&#x03C9;,&#x03B6; &#x2208; &#x03A9; : &#x03C9; &#x227D;A &#x03B6; &#x21D0;&#x21D2; uA(&#x03C9;) &#x2265; uA (&#x03B6;)  " class="math-display" ></center> and
+analogous for <span 
+class="cmmi-10">B</span>, allowing the agents to decide whether they prefer one proposal to
+another, vice versa or are indifferent towards them. Each agent also has a <span 
+class="cmti-10">reservation</span>
+<span 
+class="cmti-10">value </span><span 
+class="cmmi-10">&#x03C1;</span><sub><span 
+class="cmmi-7">A</span></sub><span 
+class="cmmi-10">,&#x03C1;</span><sub><span 
+class="cmmi-7">B</span></sub> respectively, which is the minimum utility an offer must have to an agent
+to be acceptable. A utility function <span 
+class="cmmi-10">u </span>is called <span 
+class="cmti-10">linearly additive </span>when the following
+identity holds:
+   <table 
+class="equation"><tr><td><a 
+ id="x1-3001r1"></a>
+   <center class="math-display" >
+<img 
+src="paper1x.png" alt="               n
+              &#x2211;
+&#x2200;&#x03C9; &#x2208; &#x03A9; : u(&#x03C9; ) =  wiei(&#x03C9;i)
+              i=1
+" class="math-display" ></center></td><td class="equation-label">(1)</td></tr></table>
+<!--l. 134--><p class="nopar" >
+Here <span 
+class="cmex-10">&#x2211;</span>
+  <sub><span 
+class="cmmi-7">i</span><span 
+class="cmr-7">=0</span></sub><sup><span 
+class="cmmi-7">N</span></sup><span 
+class="cmmi-10">w</span><sub><span 
+class="cmmi-7">i</span></sub> = 1 and <span 
+class="cmsy-10">&#x2200;</span><span 
+class="cmmi-10">i </span><span 
+class="cmsy-10">&#x2208;{</span>1<span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,N</span><span 
+class="cmsy-10">} </span>: <span 
+class="cmmi-10">w</span><sub><span 
+class="cmmi-7">i</span></sub> <span 
+class="cmsy-10">&#x2208; </span>[0<span 
+class="cmmi-10">,</span>1]. Here the <span 
+class="cmmi-10">w</span><sub><span 
+class="cmmi-7">i</span></sub> represents the relative
+importance of the <span 
+class="cmmi-10">i</span>th issue. This makes explicit that the assignment of any issue does
+not influence the utility of any of the other issues.
+<!--l. 137--><p class="indent" >   The way in which the agents communicate is detailed by the <span 
+class="cmti-10">protocol</span>. This is a
+technical specification of the modes of communication and what types of
+communication are allowed. The most commonly used protocol is called the
+Alternating Offers Protocol (AOP). In this protocol, the agents have only three
+options: make a proposal, accept the previous proposal or terminate the interaction
+without coming to an agreement. Here we use <span 
+class="cmmi-10">&#x03C9;</span><sup><span 
+class="cmmi-7">t</span></sup> to denote the offer made at
+time-step <span 
+class="cmmi-10">t</span>. Note that <span 
+class="cmmi-10">t </span>is discrete.
+<!--l. 139--><p class="indent" >   Finally, agents explore the negotiation space according to their <span 
+class="cmti-10">strategy</span>. Two well
+known examples, known as <span 
+class="cmti-10">zero intelligence </span>and <span 
+class="cmti-10">concession </span><span class="cite">[<a 
+href="#XbaarslagLearningOpponentAutomated2016">3</a>]</span>. The zero intelligence
+strategy is also referred to as a <span 
+class="cmti-10">random sampling </span>strategy. Agents using a random
+sampling strategy generate offers by simply defining a uniform distribution over the
+values of each issue, and constructs offers by sampling from those distributions
+until they find one that is acceptable to them. Agents using a concession
+strategy might just simply enumerate the offers in the negotiation space in
+descending order of preference, either until the other accepts or until they
+are unable to find offers that they find acceptable. We will use these two
+strategies in our empirical analysis below. Both these strategies are well
+known in the literature <span class="cite">[<a 
+href="#XlopesConcessionStrategiesNegotiating2012a">14</a>,&#x00A0;<a 
+href="#XazarNonCooperativeFrameworkCoordinating2019">2</a>,&#x00A0;<a 
+href="#XyangMultidemandNegotiationModel2019">19</a>,&#x00A0;<a 
+href="#XgodeAllocativeEfficiencyMarkets1993">7</a>,&#x00A0;<a 
+href="#XbaarslagAcceptingOptimallyAutomated2013a">4</a>,&#x00A0;<a 
+href="#XwangIntelligentNegotiationAgent2012">16</a>,&#x00A0;<a 
+href="#XhindriksUsingOpponentModels2009">8</a>]</span>. Zero Intelligence agents
+are often used as a baseline for benchmarks and concession strategies in
+various forms are well studied <span class="cite">[<a 
+href="#XbaarslagLearningOpponentAutomated2016">3</a>]</span>. We therefore use them here as a proof of
+concept.
+                                                                  
+
+                                                                  
+<!--l. 142--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
+ id="x1-40004"></a>Our Proposal: Alternating Constrained Offers Protocol</h3>
+<!--l. 144--><p class="noindent" >Almost any negotiation is subject to certain constraints. For example, a good faith
+agent will never be able to agree to sell something they do not have. When constraints
+are incompatible, this can dramatically increase the length of the negotiation,
+since under AOP there is no way to communicate boundaries of acceptable
+offers. In an effort to alleviate this problem, without introducing too much
+complexity, we propose an extension of AOP called Alternating Constrained Offers
+Protocol (ACOP). Using this protocol agents have the opportunity to express a
+constraint to the opponent when they propose a counter offer. This constraint
+makes evident that any proposal not satisfying this constraint will be rejected
+apriori.
+<!--l. 146--><p class="indent" >   In this way, agents can express more information to the opponent about
+which part of the negotiation space would be useful to explore without having
+to reveal too much information about their utility function. This can even
+present some strategic options. Cooperative agents could express all their
+constraints as fast as possible to give the opponent more information to come
+up with efficient proposals. On the other hand, more conservative agents
+can express constraints only as they become relevant, which might lead to
+expose fewer information in the case the negotiation terminates with an
+agreement before exposing <span 
+class="cmti-10">red lines</span>. In this work we focus on the use of
+<span 
+class="cmti-10">atomic constraints</span>. These are constraints that express which one of single
+particular issue value assignments is unacceptable. These constraints can
+either be given to the agent apriori, or they can be deduced by the agent
+themselves. Especially in the discrete case with linear utility functions, a
+simple branch and bound search algorithm can be enough to deduce where
+certain constraints can be created, which we illustrate with the following
+example.
+   <div class="newtheorem">
+<!--l. 148--><p class="noindent" ><span class="head">
+<span 
+class="cmti-10">Example</span><span 
+class="cmti-10">&#x00A0;1.</span> </span><a 
+ id="x1-40011"></a> Let <span 
+class="cmmi-10">A,B </span>both be negotiation agents having the reservation value
+<img 
+src="paper2x.png" alt="1
+3"  class="frac" align="middle"> and  linear  additive  utility  functions  <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">A</span></sub><span 
+class="cmmi-10">,u</span><sub><span 
+class="cmmi-7">B</span></sub>  respectively,  using  uniform
+importance weights. Furthermore, let <span 
+class="cmmi-10">&#x03A9; </span>= <span 
+class="cmmi-10">&#x039B;</span><sup><span 
+class="cmr-7">3</span></sup> with <span 
+class="cmmi-10">&#x039B; </span>= <span 
+class="cmsy-10">{</span><span 
+class="cmmi-10">v</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,</span><span 
+class="cmmi-10">&#x2026;</span><span 
+class="cmmi-10">,v</span><sub><span 
+class="cmr-7">6</span></sub><span 
+class="cmsy-10">}</span>. Therefore
+we have 3 issues, with 6 values each. In this setup we can represent <span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">A</span></sub> and
+<span 
+class="cmmi-10">u</span><sub><span 
+class="cmmi-7">B</span></sub> as matrices which are depicted in Figure <a 
+href="#x1-40041">1<!--tex4ht:ref: utilMatrices --></a>, with the rows representing the
+issues and the columns possible values. For example the offer <span 
+class="cmmi-10">&#x03C9; </span>= (<span 
+class="cmmi-10">v</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,v</span><sub><span 
+class="cmr-7">1</span></sub><span 
+class="cmmi-10">,v</span><sub><span 
+class="cmr-7">1</span></sub>)
+would have 0 utility for <span 
+class="cmmi-10">A </span>and thus be unacceptable but utility 1 for <span 
+class="cmmi-10">B </span>and be
+acceptable. Due to the scale of the potential losses <span 
+class="cmmi-10">A </span>can deduce using branch
+and bound that <span 
+class="cmmi-10">&#x03C9;</span><sub><span 
+class="cmr-7">2</span></sub>  = <span 
+class="cmmi-10">v</span><sub><span 
+class="cmr-7">2</span></sub>  can never be part of a solution they could accept.
+Therefore they can record this constraint, and express this to <span 
+class="cmmi-10">B </span>according to
+their strategy. An example of a negotiation under ACOP of this scenario can be
+seen in Figure&#x00A0;<a 
+href="#x1-40052">2<!--tex4ht:ref: fullACOPExample --></a>.
+                                                                  
+
+                                                                  
+   </div>
+<!--l. 152--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-40041"></a>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-4002r1"></a>
+<!--l. 154--><p class="noindent" > <img 
+src="A_boolean_util_matrix-.png" alt="PIC"  
+>
+<span 
+class="cmr-9">(a)</span>
+<span 
+class="cmr-9">A&#8217;s</span>
+<span 
+class="cmr-9">utility</span>
+<span 
+class="cmr-9">matrix</span><a 
+ id="x1-4003r2"></a><img 
+src="B_boolean_util_matrix-.png" alt="PIC"  
+>
+    <span 
+class="cmr-9">(b)</span>
+    <span 
+class="cmr-9">B&#8217;s</span>
+    <span 
+class="cmr-9">utility</span>
+    <span 
+class="cmr-9">matrix</span>
+<br /> <div class="caption" 
+><span class="id">Figure 1: </span><span  
+class="content">Utility matrices for A and B respectively for example <a 
+href="#x1-40011">1<!--tex4ht:ref: ConstraintGenExample --></a></span></div><!--tex4ht:label?: x1-40041 -->
+                                                                  
+
+                                                                  
+<!--l. 158--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 160--><p class="indent" >   This kind of reasoning is simple enough that it could be evaluated in response to
+new information, such as an opponent ruling out a crucial option during
+a negotiation. These constraints can help agents find acceptable options
+more efficiently, but are also useful to help agents terminate faster by letting
+them realise that a negotiation has no chance of succeeding. For example,
+when each possible value of a particular issue is ruled out by at least one
+of the participants, agreement is impossible and the agents can terminate
+early.
+<!--l. 162--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-40052"></a>
+                                                                  
+
+                                                                  
+<!--l. 203--><p class="noindent" ><object data="paper-1.svg" width="472.71751 " height="366.70929 " type="image/svg+xml"><p>SVG-Viewer needed.</p></object>
+<br /> <div class="caption" 
+><span class="id">Figure 2: </span><span  
+class="content">A schematic representation of an example negotiation under ACOP
+in the setting set out in Example <a 
+href="#x1-40011">1<!--tex4ht:ref: ConstraintGenExample --></a> assuming both agents use uniform weights</span></div><!--tex4ht:label?: x1-40052 -->
+                                                                  
+
+                                                                  
+<!--l. 207--><p class="indent" >   </div><hr class="endfigure">
+   <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
+ id="x1-50005"></a>Experimental methodology</h3>
+<!--l. 212--><p class="noindent" >Our empirical analysis provides evidence that ACOP improves over AOP in terms of
+negotiation length and does not negatively impact utility. We simulated a variety of
+negotiations with randomly generated problems and agents using either a random
+sampling or concession strategy as defined earlier, both under AOP and ACOP. At
+the end of a simulation we recorded metrics such as length of the negotiation and the
+outcome. In this section we will first detail how the problems were generated and how
+the simulations were run. Then we will discuss the results in more detail in the next
+section.
+<!--l. 215--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
+ id="x1-60005.1"></a>Problem generation</h4>
+<!--l. 216--><p class="noindent" >To run a simulation of a negotiation, four things are required:
+   <ol  class="enumerate1" >
+   <li 
+  class="enumerate" id="x1-6002x1">A negotiation space.
+   </li>
+   <li 
+  class="enumerate" id="x1-6004x2">The utility functions for the two agents.
+   </li>
+   <li 
+  class="enumerate" id="x1-6006x3">The reservation value for both agents.
+   </li>
+   <li 
+  class="enumerate" id="x1-6008x4">The strategy and protocol the agents will use (in this case they are always
+   equal for both agents).</li></ol>
+<!--l. 224--><p class="indent" >   To make the results easier to compare, the negotiation space remained
+constant, consisting of 5 issues each with 5 values across all negotiations.
+The utility function and the reservation value determine which part of the
+negotiation space is acceptable to which of the agents, whereas an agent&#8217;s
+strategy determines how they explore the possibility space. We refer to an offer
+which is acceptable to both participants of a negotiation as a <tspan font-family="cmti" font-size="10">solution </tspan>to that
+negotiation. Furthermore we call a negotiation <tspan font-family="cmti" font-size="10">possible </tspan>if there exists at least
+one solution, and otherwise <tspan font-family="cmti" font-size="10">impossible</tspan>. We use <tspan font-family="cmti" font-size="10">configuration </tspan>to refer to a
+pair of utility functions and a pair of reservation values. A pair of utility
+functions is referred to as a <tspan font-family="cmti" font-size="10">scenario</tspan>. Note that for any configuration, the
+number of solutions can be calculated to any outside observer with perfect
+information, since this is deterministic given the parameters. In total 261<tspan font-family="cmmi" font-size="10">,</tspan>225
+configurations were generated, for each of which 4 negotiations were simulated, each
+corresponding to one of the strategy and protocol pairs. This means that
+in total 1<tspan font-family="cmmi" font-size="10">,</tspan>044<tspan font-family="cmmi" font-size="10">,</tspan>900 negotiations were simulated and for each of them the
+length of the negotiation and the utility the agents achieved at the end were
+recorded.
+                                                                  
+
+                                                                  
+<!--l. 226--><p class="indent" >   Initially 300 unique pairs of utility functions were generated by drawing from
+uniform distributions on either <tspan font-family="cmsy" font-size="10">{</tspan>0<tspan font-family="cmmi" font-size="10">,</tspan>1<tspan font-family="cmmi" font-size="10">,</tspan><tspan font-family="cmmi" font-size="10">&#x2026;</tspan><tspan font-family="cmmi" font-size="10">,</tspan>100<tspan font-family="cmsy" font-size="10">} </tspan>or <tspan font-family="cmsy" font-size="10">{</tspan>0<tspan font-family="cmmi" font-size="10">,</tspan>1<tspan font-family="cmmi" font-size="10">,</tspan><tspan font-family="cmmi" font-size="10">&#x2026;</tspan><tspan font-family="cmmi" font-size="10">,</tspan>25<tspan font-family="cmsy" font-size="10">}</tspan>. The scenarios
+were drawn from two possible distributions to ensure that both sufficient
+impossible and possible configurations would be tested. Whether there are
+many, if any, mutually agreeable options in a configuration can be quite
+sensitive to randomness in the utility functions, and the reservation values the
+agents adopt, especially when the utility functions have a wide range. For
+each of the 300 base scenarios, several variants were created by adding an
+equal number of constraints in both utility functions, up to a maximum of 12
+per agent. Note that if we were to create a constraint in a value assignment
+where the opponent has very low utility, the constraint is unlikely to make a
+difference, since the opponent is not likely to make an offer that violates that
+constraint, meaning that the additional information doesn&#8217;t get utilised. To
+avoid this problem we applied what we call <tspan font-family="cmti" font-size="10">constraint injection</tspan>. This means
+that if we want to introduce <tspan font-family="cmmi" font-size="10">n </tspan>constraints in the utility function of agent <tspan font-family="cmmi" font-size="10">A</tspan>,
+we do this by determining the <tspan font-family="cmmi" font-size="10">n </tspan>most favourable assignments for <tspan font-family="cmmi" font-size="10">B </tspan>and
+overwrite the utilities for those assignments in <tspan font-family="cmmi" font-size="10">A</tspan>&#8217;s utility function with a value
+that is low enough to create a constraint. If <tspan font-family="cmmi" font-size="10">A </tspan>has a maximum utility of
+<tspan font-family="cmmi" font-size="10">u</tspan><sub><tspan font-family="cmmi" font-size="7">maxA</tspan></sub> then a value lower than <tspan font-family="cmsy" font-size="10">-</tspan><tspan font-family="cmmi" font-size="10">u</tspan><sub><tspan font-family="cmmi" font-size="7">maxA</tspan></sub> is enough to ensure a constraint
+will be created. In this scenario, the theoretical best utility possible is 100.
+Therefore we used <tspan font-family="cmsy" font-size="10">-</tspan>1000 as our constraint value, to avoid potential boundary
+issues. An example of a generated scenario sampled from [0<tspan font-family="cmmi" font-size="10">,</tspan>100] before and
+after injecting 1 constraint in each utility function can be seen in Figure
+<a 
+href="#x1-60113">3<!--tex4ht:ref: genExample --></a>.
+<!--l. 228--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-60113"></a>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-6009r1"></a>
+<!--l. 230--><p class="noindent" > <img 
+src="vanila_scenario-.png" alt="PIC"  
+>
+<tspan font-family="cmr" font-size="9">(a)</tspan>
+<tspan font-family="cmr" font-size="9">Scenario</tspan>
+<tspan font-family="cmr" font-size="9">as</tspan>
+<tspan font-family="cmr" font-size="9">originally</tspan>
+<tspan font-family="cmr" font-size="9">generated</tspan><a 
+ id="x1-6010r2"></a><img 
+src="single_constr_scenario-.png" alt="PIC"  
+>
+    <tspan font-family="cmr" font-size="9">(b)</tspan>
+    <tspan font-family="cmr" font-size="9">Scenario</tspan>
+    <tspan font-family="cmr" font-size="9">after</tspan>
+    <tspan font-family="cmr" font-size="9">injecting</tspan>
+    <tspan font-family="cmr" font-size="9">1</tspan>
+    <tspan font-family="cmr" font-size="9">constraint</tspan>
+    <tspan font-family="cmr" font-size="9">in</tspan>
+    <tspan font-family="cmr" font-size="9">each</tspan>
+    <tspan font-family="cmr" font-size="9">utility</tspan>
+    <tspan font-family="cmr" font-size="9">function.</tspan>
+    <tspan font-family="cmr" font-size="9">Note</tspan>
+    <tspan font-family="cmr" font-size="9">that</tspan>
+    <tspan font-family="cmr" font-size="9">the</tspan>
+    <tspan font-family="cmr" font-size="9">colour</tspan>
+    <tspan font-family="cmr" font-size="9">of</tspan>
+    <tspan font-family="cmr" font-size="9">the</tspan>
+    <tspan font-family="cmr" font-size="9">constrained</tspan>
+    <tspan font-family="cmr" font-size="9">cells</tspan>
+    <tspan font-family="cmr" font-size="9">is</tspan>
+    <tspan font-family="cmr" font-size="9">not</tspan>
+    <tspan font-family="cmr" font-size="9">to</tspan>
+    <tspan font-family="cmr" font-size="9">scale</tspan>
+    <tspan font-family="cmr" font-size="9">to</tspan>
+    <tspan font-family="cmr" font-size="9">preserve</tspan>
+    <tspan font-family="cmr" font-size="9">differentiability</tspan>
+    <tspan font-family="cmr" font-size="9">of</tspan>
+    <tspan font-family="cmr" font-size="9">the</tspan>
+    <tspan font-family="cmr" font-size="9">other</tspan>
+    <tspan font-family="cmr" font-size="9">colours</tspan>
+<br /> <div class="caption" 
+><span class="id">Figure 3: </span><span  
+class="content">Examples of generated utility matrices before and after injecting 1
+constraint</span></div><!--tex4ht:label?: x1-60113 -->
+                                                                  
+
+                                                                  
+<!--l. 234--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 236--><p class="indent" >   We express reservation values as a percentage of the agent&#8217;s maximum
+possible utility: an agent with a reservation value of <img 
+src="paper10x.png" alt="1
+2"  class="frac" align="middle"> will only accept offers
+that have at least half the utility of the best possible outcome. Firstly let
+<tspan font-family="cmmi" font-size="10">R</tspan><sub><tspan font-family="cmmi" font-size="7">lin</tspan></sub> = <img 
+src="paper11x.png" alt="{1   i-             }
+ 2 + 20|i &#x2208; {0,1,...,9}"  class="left" align="middle">, i.e. 10 points spaced equally apart on [<img 
+src="paper12x.png" alt="1
+2"  class="frac" align="middle"><tspan font-family="cmmi" font-size="10">,</tspan>1].
+Furthermore let <tspan font-family="cmmi" font-size="10">R</tspan><sub><tspan font-family="cmmi" font-size="7">log</tspan></sub> = <img 
+src="paper13x.png" alt="{          ilog10(1)             }
+  10log10(12)- --102-|i &#x2208; {0,1,...,9}"  class="left" align="middle">, i.e. 10 points in [<img 
+src="paper14x.png" alt="12"  class="frac" align="middle"><tspan font-family="cmmi" font-size="10">,</tspan>1]
+such that they are equally spaced in log-space. Pairs of reservation values were
+taken from either (<tspan font-family="cmmi" font-size="10">R</tspan><sub><tspan font-family="cmmi" font-size="7">lin</tspan></sub>)<sup><tspan font-family="cmr" font-size="7">2</tspan></sup> or (<tspan font-family="cmmi" font-size="10">R</tspan><sub><tspan font-family="cmmi" font-size="7">log</tspan></sub>)<sup><tspan font-family="cmr" font-size="7">2</tspan></sup>. Again, taking pairs from these two sets
+was to ensure that enough possible and impossible configurations would be
+explored.
+   <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
+ id="x1-70005.2"></a>Running the simulations</h4>
+<!--l. 240--><p class="noindent" >We introduced the two strategies used in this work&#8212;random sampling and
+concession&#8212;and how they work under AOP back in Section <a 
+href="#x1-30003">3<!--tex4ht:ref: sec:aop --></a>. We will now first
+explain how the agents adapt these strategies to function under ACOP.
+<!--l. 242--><p class="indent" >   The constraint-aware version of the random sampling agent will adjust
+the distribution it samples from, when a new constraint is introduced so
+that any assignment that has been ruled out is given probability 0. Since
+base random sampling agents construct offers by independently sampling
+from the possible values for each issue, an agents using ACOP can simply
+assign probability 0 to the values that were ruled out, and renormalise the
+distribution.
+<!--l. 244--><p class="indent" >   The concession agent explores the negotiation space using breadth-first search
+with the utility function as a heuristic. When the constraint aware version of this
+agent receives a constraint, they adjust their utility function, but overwriting the
+utility of the value that is being ruled out by a value that is smaller than negative
+their best utility. This ensures that all offers not satisfying it will fall below the
+reservation value, ensuring that they will never generate an offer that violates a
+known constraint.
+<!--l. 246--><p class="indent" >   To summarise, for each of the configurations generated, as discussed in the last
+section, 4 simulations were run, corresponding to one of the following strategy and
+protocol pairs:
+   <ol  class="enumerate1" >
+   <li 
+  class="enumerate" id="x1-7002x1">Random sampling using AOP.
+   </li>
+   <li 
+  class="enumerate" id="x1-7004x2">Concession using AOP.
+   </li>
+   <li 
+  class="enumerate" id="x1-7006x3">Random sampling using ACOP.
+   </li>
+   <li 
+  class="enumerate" id="x1-7008x4">Concession using ACOP.</li></ol>
+<!--l. 254--><p class="indent" >   To ensure that the negotiations would terminate, even if the configuration was
+impossible, a timeout of 400 rounds was introduced, meaning that each agent is
+                                                                  
+
+                                                                  
+allowed to make at most 200 offers. After this number of offers, agents would simply
+terminate the negotiation without reaching an agreement. In addition, the random
+sampling agent also terminates if it cannot discover an offer that is acceptable to
+themselves after 1000 samples, and the concession agent would terminate as soon as it
+cannot find new offers that have a utility above the reservation value. We chose these
+values as they were deemed to provide generous upper bounds for agents on
+the edge of a network. At the end of the negotiation three variables were
+collected:
+   <ol  class="enumerate1" >
+   <li 
+  class="enumerate" id="x1-7010x1">Whether the negotiation was successful.
+   </li>
+   <li 
+  class="enumerate" id="x1-7012x2">How many messages were exchanged during the entire negotiation.
+   </li>
+   <li 
+  class="enumerate" id="x1-7014x3">The utility achieved at the end of the negotiation by both agents.</li></ol>
+<!--l. 260--><p class="noindent" >Here the utility achieved by each of the agents was equal to the utility of the offer that
+was accepted or 0 if no agreement was reached.
+<!--l. 263--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">6   </span> <a 
+ id="x1-80006"></a>Results</h3>
+<!--l. 266--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">6.1   </span> <a 
+ id="x1-90006.1"></a>Impact of adopting ACOP on negotiation length</h4>
+<!--l. 267--><p class="noindent" >In this section, we study the impact that changing protocols, i.e., using constraints,
+has on negotiation length, keeping everything else fixed. Figure <a 
+href="#x1-90034">4<!--tex4ht:ref: len_dists --></a> plots for each
+strategy the frequency of different negotiation lengths, in a logarithmic scale.
+<hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-90034"></a>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-9001r1"></a>
+<!--l. 270--><p class="noindent" > <img 
+src="len_freq_enum-.png" alt="PIC"  
+>
+<tspan font-family="cmr" font-size="9">(a)</tspan>
+<tspan font-family="cmr" font-size="9">Distribution</tspan>
+<tspan font-family="cmr" font-size="9">of</tspan>
+<tspan font-family="cmr" font-size="9">the</tspan>
+<tspan font-family="cmr" font-size="9">length</tspan>
+<tspan font-family="cmr" font-size="9">of</tspan>
+<tspan font-family="cmr" font-size="9">the</tspan>
+<tspan font-family="cmr" font-size="9">negotiations</tspan>
+<tspan font-family="cmr" font-size="9">using</tspan>
+<tspan font-family="cmr" font-size="9">concession</tspan>
+<a 
+ id="x1-9002r2"></a>
+<!--l. 272--><p class="noindent" > <img 
+src="len_freq_rand-.png" alt="PIC"  
+>
+<tspan font-family="cmr" font-size="9">(b)</tspan>
+<tspan font-family="cmr" font-size="9">Distribution</tspan>
+<tspan font-family="cmr" font-size="9">of</tspan>
+<tspan font-family="cmr" font-size="9">the</tspan>
+<tspan font-family="cmr" font-size="9">length</tspan>
+<tspan font-family="cmr" font-size="9">of</tspan>
+<tspan font-family="cmr" font-size="9">the</tspan>
+<tspan font-family="cmr" font-size="9">negotiations</tspan>
+<tspan font-family="cmr" font-size="9">using</tspan>
+<tspan font-family="cmr" font-size="9">random</tspan>
+<br /> <div class="caption" 
+><span class="id">Figure 4: </span><span  
+class="content">A distribution plot of the length of all the negotiations simulated. Note
+the logarithmic scale. </span></div><!--tex4ht:label?: x1-90034 -->
+                                                                  
+
+                                                                  
+<!--l. 276--><p class="indent" >   </div><hr class="endfigure">
+<!--l. 278--><p class="indent" >   This shows that ACOP requires substantially fewer messages than AOP on
+average, evidenced by the fact that much more of the mass of the ACOP bars is
+concentrated near the left in both graphs. It is worth noting that the peak at the
+right of the graphs is mostly due to impossible negotiations. This solidifies the idea
+that no matter the &#8216;difficulty&#8217; of a negotiation, ACOP will on average terminate faster
+than AOP. We will investigate whether this means that ACOP achieves lower
+outcomes than AOP in the next section.
+<!--l. 280--><p class="indent" >   We can get a more detailed understanding of the impact of using ACOP compared
+to AOP by looking at the box-plot in Figure <a 
+href="#x1-90045">5<!--tex4ht:ref: len-improvement-box --></a>. This figure depicts the number of
+messages saved by using ACOP instead of AOP in an identical configuration. Here we
+have broken down the data by two categories: The strategy used, and whether the
+configuration had a solution or not.
+<!--l. 282--><p class="indent" >   For the agents using a random strategy, by far the most gains were made in the
+impossible configurations. Note that there are some configurations for which ACOP
+performed worse than AOP, as evidenced by the lower whisker. However, this is due
+to the randomness of the bidding. In these cases, the agents using AOP were simply
+unable to find an offer they found acceptable themselves, and thus terminated, while
+the constraints allowed the agents using ACOP to find proposals that were acceptable
+to themselves and thus kept negotiating. However we can deduce from the box plot
+that this is actually a relatively rare case. Even in cases where ACOP did not save a
+large number of messages, it almost never prolonged the negotiation by much if at
+all.
+<!--l. 284--><p class="indent" >   For concession agents, ACOP saved more messages when the configurations did
+have a solution, meaning that ACOP allowed the concession agents to search the
+negotiation space much more effectively. In the case where the configurations were
+impossible, ACOP still decreased the number of messages used even if fewer messages
+were saved. This is due to the fact that a lot of the impossible negotiations still have
+large sets of offers that are acceptable to just one of the agents that have to be ruled
+out. When considering all simulations run, we see that ACOP saves an average of
+75 messages and with a median of 8 messages saved. Considering that the
+distribution of negotiation lengths is heavily skewed towards the lower end,
+we consider this to be a very favourable result. With these observations we
+conclude that ACOP performs at least as well as AOP and improves upon
+AOP substantially in the majority of cases when considering the length of a
+negotiation.
+<!--l. 287--><p class="indent" >   <hr class="figure"><div class="figure" 
+>
+                                                                  
+
+                                                                  
+<a 
+ id="x1-90045"></a>
+                                                                  
+
+                                                                  
+<!--l. 289--><p class="noindent" > <img 
+src="msg_saved_box-.png" alt="PIC"  
+>
+<br /> <div class="caption" 
+><span class="id">Figure 5: </span><span  
+class="content">A box plot detailing the messages saved by using ACOP compared to
+AOP with identical configurations. </span></div><!--tex4ht:label?: x1-90045 -->
+                                                                  
+
+                                                                  
+<!--l. 292--><p class="indent" >   </div><hr class="endfigure">
+   <h4 class="subsectionHead"><span class="titlemark">6.2   </span> <a 
+ id="x1-100006.2"></a>Impact of adopting ACOP on competitive advantage</h4>
+<!--l. 295--><p class="noindent" >Before analysing the outcome of a negotiation in terms of utility two key observations
+need to be made. First of all, these results are highly dependent on the range of the
+utility functions. Secondly, the cost that agents incur by ending a negotiation without
+agreement can have a big impact on the results. The impact of having different
+non-agreement costs or very different utility functions is outside of the scope of this
+work. Therefore the agents in this work did not receive an additional penalty for
+failing to reach an agreement (i.e., a non-agreement was given utility 0 for
+both agents) and they were all given similar utility functions as discussed
+previously.
+<!--l. 297--><p class="indent" >   Here we will investigate whether adopting ACOP negatively impacts the outcome
+of identical negotiations in which agents use AOP. To this end we compared the
+utility of the negotiations using ACOP to that of the negotiations of the same
+configuration but using AOP. In Table <a 
+href="#x1-100011">1<!--tex4ht:ref: tab:util_ord --></a> a per-strategy-breakdown can be seen of
+what percentage of the negotiations using ACOP had a much better, better, equal,
+worse or much worse outcome than negotiations of equal configurations using AOP. If
+ACOP has a higher utility, the configuration was classified as better. If ACOP had a
+utility of at least 10 higher (10% of the theoretical maximum utility) it was classified
+as much better, with worse and much worse being defined similarly in the other
+direction.
+<!--l. 299--><p class="indent" >   In this table, we can see that for the concession agent, the vast majority of
+negotiations using ACOP (81.68%) had the exact same utility at the end as a
+negotiation of an identical configuration using AOP. While there were some cases in
+which ACOP performed slower, this happened in only roughly 3% of all cases,
+and in only 0.55% was the difference in utility bigger than 10. Conversely,
+in about 15% of the cases ACOP achieved a higher utility at the end of a
+negotiation, and in roughly 9% did it gain more than 10 utility above what AOP
+achieved.
+<!--l. 301--><p class="indent" >   Looking at the percentages for the random agent, we see that while there are more
+negotiations where ACOP achieves a lower utility than AOP. This was to be
+expected, since agents will immediately accept any offer from the adversary they find
+acceptable. Furthermore, we can see that the frequencies are symmetrically
+distributed, meaning there are roughly equal numbers of configurations that achieved
+a higher utility using ACOP as there are configurations that achieved a lower utility
+using ACOP. This pattern can be easily explained by the randomness of the bidding
+of the agents.
+   <div class="table">
+                                                                  
+
+                                                                  
+<!--l. 304--><p class="indent" >   <a 
+ id="x1-100011"></a><hr class="float"><div class="float" 
+>
+                                                                  
+
+                                                                  
+<div class="tabular"> <table id="TBL-2" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-2-1g"><col 
+id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
+id="TBL-2-2"></colgroup><colgroup id="TBL-2-3g"><col 
+id="TBL-2-3"></colgroup><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-1-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-1"  
+class="td11">         </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-1-2"  
+class="td11">                                                                   </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-1-3"  
+class="td11">Percentage of total</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
+class="td11">Strategy    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-2"  
+class="td11"> <table id="TBL-3" class="tabular" 
+cellspacing="0" cellpadding="0"  
+><colgroup id="TBL-3-1g"><col 
+id="TBL-3-1"></colgroup><tr  
+ style="vertical-align:baseline;" id="TBL-3-1-"><td  style="white-space:nowrap; text-align:center;" id="TBL-3-1-1"  
+class="td00">ACOP compared to AOP</td></tr></table>                                                                   </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-2-3"  
+class="td00">                </td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
+class="td00">Concession</td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-2"  
+class="td00">Much better                                                                                        </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-3-3"  
+class="td00">             9.06</td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
+class="td00"> </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-2"  
+class="td00">Better </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-4-3"  
+class="td00"> 5.88</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-2"  
+class="td00">Equal                                                                                                 </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-5-3"  
+class="td00">            81.68</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-2"  
+class="td00">Worse                                                                                                 </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-6-3"  
+class="td00">             2.82</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-2"  
+class="td00">Much worse                                                                                         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-7-3"  
+class="td00">             0.55</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-1"  
+class="td00">Random    </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-2"  
+class="td00">Much better                                                                                        </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-8-3"  
+class="td00">             3.40</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-2"  
+class="td00">Better                                                                                                </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-9-3"  
+class="td00">            27.83</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-2"  
+class="td00">Equal                                                                                                 </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-10-3"  
+class="td00">            38.44</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-2"  
+class="td00">Worse                                                                                                 </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-11-3"  
+class="td00">            27.62</td>
+</tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-1"  
+class="td00">          </td><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-2"  
+class="td00">Much worse                                                                                         </td><td  style="white-space:nowrap; text-align:right;" id="TBL-2-12-3"  
+class="td00">             2.70</td>
+</tr><tr 
+class="hline"><td><hr></td><td><hr></td><td><hr></td></tr><tr  
+ style="vertical-align:baseline;" id="TBL-2-13-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-13-1"  
+class="td00">          </td></tr></table></div>
+<br /> <div class="caption" 
+><span class="id">Table&#x00A0;1:  </span><span  
+class="content">Table  detailing  the  percentages  of  configurations  broken  down  by
+strategy and how the utility of the outcome of ACOP compared to that of AOP.
+Configurations for which the difference in utility was greater than 10 would be
+classified as either much better (if ACOP did better), or much worse (if AOP
+did better)</span></div><!--tex4ht:label?: x1-100011 -->
+                                                                  
+
+                                                                  
+   </div><hr class="endfloat" />
+   </div>
+<!--l. 328--><p class="indent" >   With all of these observations, we conclude that using ACOP does not negatively
+affect the outcome of the negotiations in any systematic way.
+   <h3 class="sectionHead"><span class="titlemark">7   </span> <a 
+ id="x1-110007"></a>Conclusion</h3>
+<!--l. 331--><p class="noindent" >In this paper we proposed a novel extension to the Alternating Offers Protocol
+(AOP) called Alternating Constrained Offers Protocol (ACOP) which allows
+agents to express constraints to the adversary along with offering counter
+proposals. These constraints can be given to an agent apriori, or discovered
+using branch-and-bound algorithms. This protocol allows agents&#8212;especially
+agents deployed on low-power devices at the edge of a network&#8212;to terminate
+negotiations faster without consistently negatively impacting the utility of the
+outcome, allowing them to save bandwidth without the need to equip them
+with sophisticated reasoning capabilities. We explored the impact that this
+extension has on the length of the negotiations as well as on the utility achieved
+at the end of the negotiation. We empirically showed that this extension
+substantially reduces the number of messages agents have to exchange during
+a negotiation. When agreement is possible, using ACOP helps agents to
+come to an agreement faster, and when agreement is impossible, agents using
+ACOP terminate much faster than agents using AOP both when agents adopt
+a probabilistic or a deterministic search method. In addition, we showed
+that using ACOP has no systematic negative impact on the quality of the
+outcome in terms of utility when compared to the same strategies using
+AOP.
+<!--l. 333--><p class="indent" >   While the results of this work were promising, the scenarios and strategies used to
+produce them were not very complex. Future work will include investigating the
+performance of ACOP under non-linear utility functions, and with more
+sophisticated strategies and opponent models, comparing also with other
+approaches for dealing for instance with fuzzy constraints <span class="cite">[<a 
+href="#XluoFuzzyConstraintBased2003">15</a>]</span>, and with
+also much larger large, non-linear agreement spaces <span class="cite">[<a 
+href="#XJonge2015">10</a>]</span>. Another avenue
+will be to understand the impact of using soft constraints rather than hard
+ones.
+<!--l. 1--><p class="noindent" >
+   <h3 class="likesectionHead"><a 
+ id="x1-120007"></a>References</h3>
+<!--l. 1--><p class="noindent" >
+   <div class="thebibliography">
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">1.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XAydogan2017"></a><tspan font-family="cmr" font-size="9">Aydo</tspan><tspan font-family="cmr" font-size="9">&#x011F;an,  R.,  Festen,  D.,  Hindriks,  K.V.,  Jonker,  C.M.:  Alternating  Offers</tspan>
+   <tspan font-family="cmr" font-size="9">Protocols for Multilateral Negotiation. In: Modern Approaches to Agent-Based</tspan>
+   <tspan font-family="cmr" font-size="9">Complex Automated Negotiation, pp. 153&#8211;167. Springer International Publishing,</tspan>
+   <tspan font-family="cmr" font-size="9">Cham (2017). https://doi.org/10.1007/978-3-319-51563-2</tspan><tspan font-family="cmr" font-size="9">_10</tspan>
+                                                                  
+
+                                                                  
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">2.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XazarNonCooperativeFrameworkCoordinating2019"></a><tspan font-family="cmr" font-size="9">Azar, A.G., Nazaripouya, H., Khaki, B., Chu, C., Gadh, R., Jacobsen, R.H.:</tspan>
+   <tspan font-family="cmr" font-size="9">A Non-Cooperative Framework for Coordinating a Neighborhood of Distributed</tspan>
+   <tspan font-family="cmr" font-size="9">Prosumers. IEEE Transactions on Industrial Informatics </tspan><tspan font-family="cmbx" font-size="9">15</tspan><tspan font-family="cmr" font-size="9">(5), 2523&#8211;2534 (May</tspan>
+   <tspan font-family="cmr" font-size="9">2019). https://doi.org/10.1109/TII.2018.2867748</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">3.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XbaarslagLearningOpponentAutomated2016"></a><tspan font-family="cmr" font-size="9">Baarslag, T., Hendrikx, M.J.C., Hindriks, K.V., Jonker, C.M.: Learning about</tspan>
+   <tspan font-family="cmr" font-size="9">the  opponent  in  automated  bilateral  negotiation:  A  comprehensive  survey  of</tspan>
+   <tspan font-family="cmr" font-size="9">opponent  modeling  techniques.  Autonomous  Agents  and  Multi-Agent  Systems</tspan>
+   <tspan font-family="cmbx" font-size="9">30</tspan><tspan font-family="cmr" font-size="9">(5), 849&#8211;898 (Sep 2016). https://doi.org/10.1007/s10458-015-9309-1</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">4.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XbaarslagAcceptingOptimallyAutomated2013a"></a><tspan font-family="cmr" font-size="9">Baarslag, T., Hindriks, K.V.: Accepting Optimally in Automated Negotiation</tspan>
+   <tspan font-family="cmr" font-size="9">with Incomplete Information. In: Proceedings of the 2013 International Conference</tspan>
+   <tspan font-family="cmr" font-size="9">on  Autonomous  Agents  and  Multi-Agent  Systems.  pp.  715&#8211;722.  AAMAS  &#8217;13,</tspan>
+   <tspan font-family="cmr" font-size="9">International  Foundation  for  Autonomous  Agents  and  Multiagent  Systems,</tspan>
+   <tspan font-family="cmr" font-size="9">Richland, SC (2013)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">5.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="Xfatima2014principles"></a><tspan font-family="cmr" font-size="9">Fatima, S., Kraus, S., Wooldridge, M.: Principles of automated negotiation.</tspan>
+   <tspan font-family="cmr" font-size="9">Cambridge University Press (2014)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">6.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XgaciarzConstraintBasedNegotiationModel2015"></a><tspan font-family="cmr" font-size="9">Gaciarz,  M.,  Aknine,  S.,  Bhouri,  N.:  Constraint-Based  Negotiation  Model</tspan>
+   <tspan font-family="cmr" font-size="9">for  Traffic  Regulation.  In:  2015  IEEE/WIC/ACM  International  Conference  on</tspan>
+   <tspan font-family="cmr" font-size="9">Web Intelligence and Intelligent Agent Technology (WI-IAT). vol.</tspan><tspan font-family="cmr" font-size="9">&#x00A0;2, pp. 320&#8211;327.</tspan>
+   <tspan font-family="cmr" font-size="9">IEEE, Singapore (Dec 2015). https://doi.org/10.1109/WI-IAT.2015.72</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">7.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XgodeAllocativeEfficiencyMarkets1993"></a><tspan font-family="cmr" font-size="9">Gode, D.K., Sunder, S.: Allocative Efficiency of Markets with Zero-Intelligence</tspan>
+   <tspan font-family="cmr" font-size="9">Traders:  Market  as  a  Partial  Substitute  for  Individual  Rationality.  Journal  of</tspan>
+   <tspan font-family="cmr" font-size="9">Political Economy </tspan><tspan font-family="cmbx" font-size="9">101</tspan><tspan font-family="cmr" font-size="9">(1), 119&#8211;137 (Feb 1993). https://doi.org/10.1086/261868</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">8.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XhindriksUsingOpponentModels2009"></a><tspan font-family="cmr" font-size="9">Hindriks, K., Jonker, C., Tykhonov, D.: Using Opponent Models for Efficient</tspan>
+   <tspan font-family="cmr" font-size="9">Negotiation. In: Proceedings of The 8th International Conference on Autonomous</tspan>
+   <tspan font-family="cmr" font-size="9">Agents  and  Multiagent  Systems  -  Volume  2.  pp.  1243&#8211;1244.  AAMAS  &#8217;09,</tspan>
+   <tspan font-family="cmr" font-size="9">International  Foundation  for  Autonomous  Agents  and  Multiagent  Systems,</tspan>
+   <tspan font-family="cmr" font-size="9">Richland, SC (2009)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+ <tspan font-family="cmr" font-size="9">9.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XdelaHoz2015"></a><tspan font-family="cmr" font-size="9">de</tspan><tspan font-family="cmr" font-size="9">&#x00A0;la  Hoz,  E.,  Gimenez-Guzman,  J.M.,  Marsa-Maestre,  I.,  Orden,  D.:</tspan>
+   <tspan font-family="cmr" font-size="9">Automated  negotiation  for  resource  assignment  in  wireless  surveillance  sensor</tspan>
+   <tspan font-family="cmr" font-size="9">networks.   Sensors   (Basel,   Switzerland)   </tspan><tspan font-family="cmbx" font-size="9">15</tspan><tspan font-family="cmr" font-size="9">(11),   29547&#8211;29568   (Nov   2015).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.3390/s151129547,</tspan>
+   <tspan font-family="cmr" font-size="9">https://www.ncbi.nlm.nih.gov/pubmed/26610512, 26610512[pmid]</tspan>
+   </p>
+                                                                  
+
+                                                                  
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">10.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XJonge2015"></a><tspan font-family="cmr" font-size="9">Jonge,</tspan>
+   <tspan font-family="cmr" font-size="9">D.,  Sierra,  C.:</tspan>  <tspan font-family="cmr" font-size="9">NB</tspan><sup><tspan font-family="cmr" font-size="6">3</tspan></sup><tspan font-family="cmr" font-size="9">:  A  multilateral  negotiation  algorithm  for  large,  non-linear</tspan>
+   <tspan font-family="cmr" font-size="9">agreement  spaces  with  limited  time.  Autonomous  Agents  and  Multi-Agent</tspan>
+   <tspan font-family="cmr" font-size="9">Systems  </tspan><tspan font-family="cmbx" font-size="9">29</tspan><tspan font-family="cmr" font-size="9">(5),  896942  (Sep  2015).  https://doi.org/10.1007/s10458-014-9271-3,</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1007/s10458-014-9271-3</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">11.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="Xklein2003negotiating"></a><tspan font-family="cmr" font-size="9">Klein,  M.,  Faratin,  P.,  Sayama,  H.,  Bar-Yam,  Y.:  Negotiating  complex</tspan>
+   <tspan font-family="cmr" font-size="9">contracts. Group Decision and Negotiation </tspan><tspan font-family="cmbx" font-size="9">12</tspan><tspan font-family="cmr" font-size="9">(2), 111&#8211;125 (2003)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">12.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="X45648"></a><tspan font-family="cmr" font-size="9">Kone</tspan><tspan font-family="cmr" font-size="9">&#x010D;n</tspan><tspan font-family="cmr" font-size="9">&#x00FD;,  J.,  McMahan,  H.B.,  Yu,  F.X.,  Richtarik,  P.,  Suresh,  A.T.,</tspan>
+   <tspan font-family="cmr" font-size="9">Bacon,   D.:   Federated   learning:   Strategies   for   improving   communication</tspan>
+   <tspan font-family="cmr" font-size="9">efficiency. In: NIPS Workshop on Private Multi-Party Machine Learning (2016),</tspan>
+   <tspan font-family="cmr" font-size="9">https://arxiv.org/abs/1610.05492</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">13.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XlamparterAgentbasedMarketPlatform2010"></a><tspan font-family="cmr" font-size="9">Lamparter, S., Becher, S., Fischer, J.G.: An Agent-based Market Platform for</tspan>
+   <tspan font-family="cmr" font-size="9">Smart Grids. In: Proceedings of the 9th International Conference on Autonomous</tspan>
+   <tspan font-family="cmr" font-size="9">Agents  and  Multiagent  Systems:  Industry  Track.  pp.  1689&#8211;1696.  AAMAS  &#8217;10,</tspan>
+   <tspan font-family="cmr" font-size="9">International  Foundation  for  Autonomous  Agents  and  Multiagent  Systems,</tspan>
+   <tspan font-family="cmr" font-size="9">Richland, SC (2010)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">14.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XlopesConcessionStrategiesNegotiating2012a"></a><tspan font-family="cmr" font-size="9">Lopes, F., Coelho, H.: Concession Strategies for Negotiating Bilateral Contracts</tspan>
+   <tspan font-family="cmr" font-size="9">in  Multi-agent  Electricity  Markets.  In:  2012  23rd  International  Workshop</tspan>
+   <tspan font-family="cmr" font-size="9">on  Database  and  Expert  Systems  Applications.  pp.  321&#8211;325  (Sep  2012).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1109/DEXA.2012.24</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">15.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XluoFuzzyConstraintBased2003"></a><tspan font-family="cmr" font-size="9">Luo,   X.,   Jennings,   N.R.,   Shadbolt,   N.,   Leung,   H.f.,   Lee,   J.H.m.:   A</tspan>
+   <tspan font-family="cmr" font-size="9">fuzzy   constraint   based   model   for   bilateral,   multi-issue   negotiations   in</tspan>
+   <tspan font-family="cmr" font-size="9">semi-competitive environments. Artificial Intelligence </tspan><tspan font-family="cmbx" font-size="9">148</tspan><tspan font-family="cmr" font-size="9">(1), 53&#8211;102 (Aug 2003).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1016/S0004-3702(03)00041-9</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">16.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XwangIntelligentNegotiationAgent2012"></a><tspan font-family="cmr" font-size="9">Wang, Z., Wang, L.: Intelligent negotiation agent with learning capability for</tspan>
+   <tspan font-family="cmr" font-size="9">energy trading between building and utility grid. In: IEEE PES Innovative Smart</tspan>
+   <tspan font-family="cmr" font-size="9">Grid               Technologies.               pp.</tspan><tspan font-family="cmr" font-size="9">&#x00A0;1&#8211;6               (May               2012).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1109/ISGT-Asia.2012.6303167</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">17.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XXu:2019:EFL:3321408.3323080"></a><tspan font-family="cmr" font-size="9">Xu,                             Z.,                             Li,                             L.,</tspan>
+   <tspan font-family="cmr" font-size="9">Zou, W.: Exploring federated learning on battery-powered devices. In: Proceedings</tspan>
+   <tspan font-family="cmr" font-size="9">of the ACM Turing Celebration Conference - China. pp. 6:1&#8211;6:6. ACM TURC</tspan>
+   <tspan font-family="cmr" font-size="9">&#8217;19, ACM, New York, NY, USA (2019). https://doi.org/10.1145/3321408.3323080,</tspan>
+   <tspan font-family="cmr" font-size="9">http://doi.acm.org/10.1145/3321408.3323080</tspan>
+   </p>
+                                                                  
+
+                                                                  
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">18.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="X8462804"></a><tspan font-family="cmr" font-size="9">Yang,  S.,  Peng,  D.,  Meng,  T.,  Wu,  F.,  Chen,  G.,  Tang,  S.,  Li,  Z.,</tspan>
+   <tspan font-family="cmr" font-size="9">Luo,  T.:  On  designing  distributed  auction  mechanisms  for  wireless  spectrum</tspan>
+   <tspan font-family="cmr" font-size="9">allocation. IEEE Transactions on Mobile Computing </tspan><tspan font-family="cmbx" font-size="9">18</tspan><tspan font-family="cmr" font-size="9">(9), 2129&#8211;2146 (Sep 2019).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1109/TMC.2018.2869863</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">19.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XyangMultidemandNegotiationModel2019"></a><tspan font-family="cmr" font-size="9">Yang, Y., Luo, X.: A Multi-demand Negotiation Model with Fuzzy Concession</tspan>
+   <tspan font-family="cmr" font-size="9">Strategies.  In:  Rutkowski,  L.,  Scherer,  R.,  Korytkowski,  M.,  Pedrycz,  W.,</tspan>
+   <tspan font-family="cmr" font-size="9">Tadeusiewicz, R., Zurada, J.M. (eds.) Artificial Intelligence and Soft Computing.</tspan>
+   <tspan font-family="cmr" font-size="9">pp. 689&#8211;707. Lecture Notes in Computer Science, Springer International Publishing</tspan>
+   <tspan font-family="cmr" font-size="9">(2019)</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">20.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XyassineDoubleAuctionMechanisms2019"></a><tspan font-family="cmr" font-size="9">Yassine,   A.,   Hossain,   M.S.,   Muhammad,   G.,   Guizani,   M.:   Double</tspan>
+   <tspan font-family="cmr" font-size="9">auction  mechanisms  for  dynamic  autonomous  electric  vehicles  energy  trading.</tspan>
+   <tspan font-family="cmr" font-size="9">IEEE  Transactions  on  Vehicular  Technology  </tspan><tspan font-family="cmbx" font-size="9">68</tspan><tspan font-family="cmr" font-size="9">(8),  7466&#8211;7476  (Aug  2019).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1109/TVT.2019.2920531</tspan>
+   </p>
+   <p class="bibitem" ><span class="biblabel">
+<tspan font-family="cmr" font-size="9">21.</tspan> <span class="bibsp"><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan><tspan font-family="cmr" font-size="9">&#x00A0;</tspan></span></span><a 
+ id="XZhang2010"></a><tspan font-family="cmr" font-size="9">Zhang,  G.,  Jiang,  G.R.,  Huang,  T.Y.:  Design  of  argumentation-based</tspan>
+   <tspan font-family="cmr" font-size="9">multi-agent negotiation system oriented to E-commerce. International Conference</tspan>
+   <tspan font-family="cmr" font-size="9">on Internet Technology and Applications, ITAP 2010 - Proceedings pp.</tspan><tspan font-family="cmr" font-size="9">&#x00A0;1&#8211;6 (2010).</tspan>
+   <tspan font-family="cmr" font-size="9">https://doi.org/10.1109/ITAPP.2010.5566198</tspan>
+</p>
+   </div>
+    
+</body></html> 
+
+                                                                  
+
+                                                                  
+                                                                  
+
+
